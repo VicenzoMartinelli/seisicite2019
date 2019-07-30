@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Infra.Data.MongoIdentityStore</id>
+    <version>1.0.0</version>
+    <authors>Infra.Data.MongoIdentityStore</authors>
+    <owners>Infra.Data.MongoIdentityStore</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework=".NETCoreApp2.2">
+        <dependency id="Ensure.That" version="8.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Identity" version="2.2.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Identity.Core" version="2.2.0" exclude="Build,Analyzers" />
+        <dependency id="MongoDB.Driver" version="2.8.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.Data.MongoIdentityStore\bin\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.dll" target="lib\netcoreapp2.2\Infra.Data.MongoIdentityStore.dll" />
+  </files>
+</package>

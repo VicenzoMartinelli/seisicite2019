@@ -1,0 +1,16 @@
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Auth\bin\Debug\netcoreapp2.2\Infra.Auth.deps.json
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Auth\bin\Debug\netcoreapp2.2\Infra.Auth.dll
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Auth\bin\Debug\netcoreapp2.2\Infra.Auth.pdb
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Auth\bin\Debug\netcoreapp2.2\Domain.Core.dll
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Auth\bin\Debug\netcoreapp2.2\Domain.dll
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Auth\bin\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.dll
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Auth\bin\Debug\netcoreapp2.2\Domain.Core.pdb
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Auth\bin\Debug\netcoreapp2.2\Domain.pdb
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Auth\bin\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.pdb
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Auth\obj\Debug\netcoreapp2.2\Infra.Auth.csprojAssemblyReference.cache
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Auth\obj\Debug\netcoreapp2.2\Infra.Auth.csproj.CoreCompileInputs.cache
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Auth\obj\Debug\netcoreapp2.2\Infra.Auth.AssemblyInfoInputs.cache
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Auth\obj\Debug\netcoreapp2.2\Infra.Auth.AssemblyInfo.cs
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Auth\obj\Debug\netcoreapp2.2\Infra.Auth.csproj.CopyComplete
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Auth\obj\Debug\netcoreapp2.2\Infra.Auth.dll
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Auth\obj\Debug\netcoreapp2.2\Infra.Auth.pdb

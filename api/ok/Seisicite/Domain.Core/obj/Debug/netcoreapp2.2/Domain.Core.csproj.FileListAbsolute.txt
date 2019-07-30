@@ -1,0 +1,12 @@
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Domain.Core\bin\Debug\netcoreapp2.2\Domain.Core.deps.json
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Domain.Core\bin\Debug\netcoreapp2.2\Domain.Core.dll
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Domain.Core\bin\Debug\netcoreapp2.2\Domain.Core.pdb
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Domain.Core\bin\Debug\netcoreapp2.2\Newtonsoft.Json.dll
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Domain.Core\bin\Debug\netcoreapp2.2\Newtonsoft.Json.xml
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Domain.Core\obj\Debug\netcoreapp2.2\Domain.Core.csproj.CoreCompileInputs.cache
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Domain.Core\obj\Debug\netcoreapp2.2\Domain.Core.AssemblyInfoInputs.cache
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Domain.Core\obj\Debug\netcoreapp2.2\Domain.Core.AssemblyInfo.cs
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Domain.Core\obj\Debug\netcoreapp2.2\Domain.Core.csproj.CopyComplete
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Domain.Core\obj\Debug\netcoreapp2.2\Domain.Core.dll
+c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Domain.Core\obj\Debug\netcoreapp2.2\Domain.Core.pdb
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Domain.Core\obj\Debug\netcoreapp2.2\Domain.Core.csprojAssemblyReference.cache

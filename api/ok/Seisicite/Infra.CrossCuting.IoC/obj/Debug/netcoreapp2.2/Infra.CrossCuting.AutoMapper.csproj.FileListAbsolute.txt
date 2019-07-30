@@ -1,0 +1,9 @@
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.CrossCuting.IoC\bin\Debug\netcoreapp2.2\Infra.CrossCuting.AutoMapper.deps.json
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.CrossCuting.IoC\bin\Debug\netcoreapp2.2\Infra.CrossCuting.AutoMapper.dll
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.CrossCuting.IoC\bin\Debug\netcoreapp2.2\Infra.CrossCuting.AutoMapper.pdb
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.CrossCuting.IoC\obj\Debug\netcoreapp2.2\Infra.CrossCuting.AutoMapper.csprojAssemblyReference.cache
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.CrossCuting.IoC\obj\Debug\netcoreapp2.2\Infra.CrossCuting.AutoMapper.csproj.CoreCompileInputs.cache
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.CrossCuting.IoC\obj\Debug\netcoreapp2.2\Infra.CrossCuting.AutoMapper.AssemblyInfoInputs.cache
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.CrossCuting.IoC\obj\Debug\netcoreapp2.2\Infra.CrossCuting.AutoMapper.AssemblyInfo.cs
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.CrossCuting.IoC\obj\Debug\netcoreapp2.2\Infra.CrossCuting.AutoMapper.dll
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.CrossCuting.IoC\obj\Debug\netcoreapp2.2\Infra.CrossCuting.AutoMapper.pdb
