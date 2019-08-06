@@ -6,8 +6,7 @@ using System.Security.Claims;
 using MongoDB.Bson;
 
 namespace Infra.Data.MongoIdentityStore
-{
-    [SuppressMessage("ReSharper", "AutoPropertyCanBeMadeGetOnly.Local", Justification = "MongoDB serialization needs private setters")]
+{ 
     public class MongoIdentityUser
     {
         private List<MongoUserToken> _tokens;
@@ -50,6 +49,7 @@ namespace Infra.Data.MongoIdentityStore
         public string Id { get; private set; }
         public string UserName { get; private set; }
         public string NormalizedUserName { get; private set; }
+        public EUserType Type { get; set; }
         public MongoUserEmail Email { get; private set; }
 
         public MongoUserPhoneNumber PhoneNumber { get; private set; }

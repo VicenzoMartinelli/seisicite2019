@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
 
@@ -6,8 +6,12 @@ export default createGlobalStyle`
 
   body {
     font: 14px 'Roboto', sans-serif;
-    background: rgba(240, 240, 240, 0.88);
+    background: rgba(211, 211, 211, 0.62);
     -webkit-font-smoothing: antialiased !important;
+  }
+
+  * {
+    max-height: 100%;
   }
 
   /* h1, h2, h3, h4, h5 {
@@ -15,4 +19,4 @@ export default createGlobalStyle`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   } */
-`;
+`

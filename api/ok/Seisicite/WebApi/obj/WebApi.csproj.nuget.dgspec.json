@@ -590,6 +590,9 @@
               },
               "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.CrossCuting.IoC\\Infra.CrossCuting.IoC.csproj": {
                 "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.CrossCuting.IoC\\Infra.CrossCuting.IoC.csproj"
+              },
+              "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.Data.MongoIdentityStore\\Infra.Data.MongoIdentityStore.csproj": {
+                "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.Data.MongoIdentityStore\\Infra.Data.MongoIdentityStore.csproj"
               }
             }
           }
@@ -624,6 +627,10 @@
               "target": "Package",
               "version": "[2.2.0, )",
               "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.AspNetCore.Razor.Design": {
               "suppressParent": "All",

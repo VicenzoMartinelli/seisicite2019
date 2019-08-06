@@ -5,6 +5,7 @@ import { Router, Route, Switch, Redirect } from "react-router-dom";
 import history from './history';
 import Home from "./pages/home";
 import Login from "./pages/login";
+import articles from "./pages/articles";
 
 //import { isAuthenticated } from "./services/auth";
 
@@ -33,6 +34,7 @@ const Routes = () => (
     <Fragment>
       <Switch>
         <Route exact path={["", "/"]} component={Home} />
+        <Route path="/articles" component={articles} />
         <Route path="/login" component={Login} />
         <Route path="/secret" component={() => <h1>aaaa</h1>} />
         <Route component={NoMatch} />

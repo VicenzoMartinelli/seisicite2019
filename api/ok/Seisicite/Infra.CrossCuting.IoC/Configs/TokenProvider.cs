@@ -32,7 +32,7 @@ namespace Infra.Ioc.Configs
       services.AddIdentity<MongoIdentityUser>()
           .AddDefaultTokenProviders();
 
-      services.AddScoped<IdentityErrorDescriber, SponteIdentityErrorDescriber>();
+      services.AddScoped<IdentityErrorDescriber, PersonalIdentityErrorDescriber>();
 
       services.Configure<IdentityOptions>(options =>
       {

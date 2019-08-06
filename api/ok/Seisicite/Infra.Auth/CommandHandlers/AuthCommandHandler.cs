@@ -43,6 +43,7 @@ namespace Infra.Auth.CommandHandlers
       var user = new MongoIdentityUser(request.Email, request.Email);
 
       user.AddClaim(new MongoUserClaim("Email", request.Email));
+      user.AddClaim(new MongoUserClaim("Type", request.Type.ToString()));
 
       var result = await _userManager.CreateAsync(user, request.Password);
 

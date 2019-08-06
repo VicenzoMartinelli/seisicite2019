@@ -20,60 +20,67 @@ using Microsoft.Extensions.Options;
 
 namespace WebApi
 {
-  public class Startup
-  {
-    public Startup(IConfiguration configuration)
+    public class Startup
     {
-      Configuration = configuration;
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddCors();
+
+            services.AddMvc((m) =>
+            {
+                m.Filters.Add(typeof(NotificationActionFilter));
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddMediatR(typeof(Startup));
+
+            services.AddAutoMapperConfig();
+
+            services.AddSwaggerConfig();
+
+            RegisterServices(services);
+        }
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            app.UseCors(builder => builder
+              .AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials());
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseHsts();
+            }
+
+            app.UseHttpsRedirection();
+
+            app.UseAuthentication();
+
+            app.UseMvc();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(s =>
+            {
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Educacional API v1.0");
+            });
+        }
+
+        private static void RegisterServices(IServiceCollection services)
+        {
+            NativeInjectorBootStrapper.RegisterServices(services);
+        }
     }
-
-    public IConfiguration Configuration { get; }
-
-    public void ConfigureServices(IServiceCollection services)
-    {
-      services.AddMvc((m) => {
-        m.Filters.Add(typeof(NotificationActionFilter));
-      }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-      services.AddMediatR(typeof(Startup));
-
-      services.AddAutoMapperConfig();
-
-      services.AddSwaggerConfig();
-
-      RegisterServices(services);
-    }
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-    {
-      if (env.IsDevelopment())
-      {
-        app.UseDeveloperExceptionPage();
-      }
-      else
-      {
-        app.UseHsts();
-      }
-
-      app.AddCorsConfig();
-
-      app.UseHttpsRedirection();
-
-      app.UseAuthentication();
-
-      app.UseMvc();
-
-      app.UseSwagger();
-
-      app.UseSwaggerUI(s =>
-      {
-        s.SwaggerEndpoint("/swagger/v1/swagger.json", "Educacional API v1.0");
-      });
-    }
-
-    private static void RegisterServices(IServiceCollection services)
-    {
-      NativeInjectorBootStrapper.RegisterServices(services);
-    }
-  }
 }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
-  [Route("")]
+  [Route("auth")]
   public class AuthController : BaseApiController
   {
     public AuthController(IMediator mediator, NotificationContext notificationContext) : base(mediator, notificationContext)

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Infra.Auth.Configuration
 {
-  public class SponteIdentityErrorDescriber : IdentityErrorDescriber
+  public class PersonalIdentityErrorDescriber : Microsoft.AspNetCore.Identity.IdentityErrorDescriber
   {
     private IdentityError GetErrorByReturnCode(ReturnCode code)
     {
