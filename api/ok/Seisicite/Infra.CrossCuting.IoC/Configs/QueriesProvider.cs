@@ -1,5 +1,6 @@
 ﻿using Application.Api.Queries;
 using Application.Api.QueryHandlers;
+using Application.Api.ViewModels;
 using Domains.Article;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +14,8 @@ namespace Infra.Ioc.Configs
   {
     public static void AddQueriesServices(this IServiceCollection services)
     {
-      services.AddScoped<IRequestHandler<ListArticlesOrderByDateQuery, List<Article>>, ListArticlesOrderByDateQueryHandler>();
+      services.AddScoped<IRequestHandler<ListArticlesPaginatedByEventQuery, ArticleViewModel>, ListArticlesPaginatedByEventQueryHandler>();
+      services.AddScoped<IRequestHandler<ListAvaliadoresByEventoQuery, List<AvaliadorViewModel>>, ListAvaliadoresByEventoQueryHandler>();
     }
   }
 }

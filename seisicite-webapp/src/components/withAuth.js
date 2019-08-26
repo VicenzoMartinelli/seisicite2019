@@ -9,6 +9,8 @@ export default function withAuth(AuthComponent) {
 
     useEffect(() => {
       if (!auth.loggedIn()) {
+        auth.logout();
+
         history.replace("/login");
       } else {
         try {

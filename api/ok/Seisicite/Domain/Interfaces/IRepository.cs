@@ -10,9 +10,11 @@ namespace Domain.Interfaces
   public interface IRepository
   {
     Task<IQueryable<T>> Query<T>() where T : class;
+    Task<IQueryable<T>> Query<T>(string collectionName) where T : class;
     Task<T> GetByIdAsync<T>(string id) where T : class;
     Task<List<T>> GetAll<T>() where T : class;
     Task<List<T>> GetByFilter<T>(FilterDefinition<T> filter) where T : class;
+    Task<List<T>> GetByFilter<T>(FilterDefinition<T> filter, string collectionName) where T : class;
     Task<T> AddAsync<T>(T source) where T : class;
     Task<T> UpdateAsync<T>(T source, string id) where T : class;
     Task<T> SaveOrUpdateAsync<T>(T source, string id) where T : class;

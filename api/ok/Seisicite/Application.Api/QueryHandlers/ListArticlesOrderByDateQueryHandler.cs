@@ -7,26 +7,47 @@ using Application.Api.Queries;
 using Domain.Interfaces;
 using Domains.Article;
 using MediatR;
+using Application.Api.ViewModels;
 
 namespace Application.Api.QueryHandlers
 {
-    public class ListArticlesOrderByDateQueryHandler : IRequestHandler<ListArticlesOrderByDateQuery, List<Article>>
+  public class ListArticlesPaginatedByEventQueryHandler : IRequestHandler<ListArticlesPaginatedByEventQuery, ArticleViewModel>
+  {
+    private readonly IRepository _repository;
+
+    public ListArticlesPaginatedByEventQueryHandler(IRepository repository)
     {
-        private readonly IRepository _repository;
-
-        public ListArticlesOrderByDateQueryHandler(IRepository repository)
-        {
-            _repository = repository;
-        }
-        public async Task<List<Article>> Handle(ListArticlesOrderByDateQuery request, CancellationToken cancellationToken)
-        {
-            var query = await _repository.Query<Article>();
-
-
-            return query
-                .Where(x => x.AssessmentStatus == request.Status)
-                .OrderBy(x => x.StartDate)
-                .ToList();
-        }
+      _repository = repository;
     }
+    public async Task<ArticleViewModel> Handle(ListArticlesPaginatedByEventQuery request, CancellationToken cancellationToken)
+    {
+      var query = await _repository.Query<Article>();
+
+      var skip = request.Page == 0 ? 0 : (request.Page - 1) * request.PageSize;
+      var take = request.PageSize;
+
+      var items = query
+      .Where(x => x.Event == request.Event)
+      //.Skip(skip)
+      //.Take(take)
+      .OrderBy(x => x.StartDate);
+
+      return new ArticleViewModel()
+      {
+        Page = request.Page++,
+        Items = items.ToList().Select(x => new ArticleItem(){
+            Id = x.Id,
+            SubmissionId = x.SubmissionId,
+            Title = x.Title,
+            Resume = x.Resume,
+            Building = x.Building,
+            Modality = x.Modality,
+            Room = x.Room,
+            PrimaryAuthor = x.PrimaryAuthor,
+            StartDate = x.StartDate.ToLocalTime(),
+            EndDate = x.EndDate.ToLocalTime()
+        }).ToList()
+      };
+    }
+  }
 }

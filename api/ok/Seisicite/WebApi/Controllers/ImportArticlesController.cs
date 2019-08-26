@@ -22,22 +22,7 @@ namespace WebApi.Controllers
     {
         public ImportArticlesController(IMediator mediator, NotificationContext notificationContext) : base(mediator, notificationContext)
         { }
-
-        /// <summary>
-        /// Método para obter a lista de mídias ativas
-        /// </summary>
-        /// <returns>uma lista de mídias ativas</returns>
-        [HttpGet("{status}")]
-        public async Task<IActionResult> GetArticlesBySituacao(EAssessmentStatus status)
-        {
-            var value = await _mediator.Send(new ListArticlesOrderByDateQuery()
-            {
-                Status = status
-            });
-
-            return await ResponseOkAsync(value);
-        }
-
+        
         [HttpPost("{evvent}")]
         public async Task<IActionResult> ImportArticles(
             IFormFile file,

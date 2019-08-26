@@ -12,19 +12,23 @@ export const login = async (email, password) => {
 
     return Promise.resolve(res);
   } catch (error) {
-    return Promise.resolve(false);
+    return Promise.resolve({
+      success: false,
+      msg: error.response.data.occurrences ? error.response.data.occurrences[0].message : error.response.data
+    });
   }
 };
 
 export const loggedIn = () => {
   const token = getToken();
 
-  return !(!token && !isTokenExpired(token));
+  return token && !isTokenExpired(token);
 };
 
 export const isTokenExpired = token => {
   try {
     const decoded = decode(token);
+
     if (decoded.exp < Date.now() / 1000) {
       return true;
     } else return false;
@@ -42,7 +46,6 @@ export const logout = () => localStorage.removeItem("ssc_jwt_tkn");
 export const getConfirm = () => {
   const confirm = decode(getToken());
 
-  console.log(confirm);
   return confirm;
 }
 

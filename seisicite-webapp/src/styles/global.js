@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import { primaryColor } from './kit';
 
 export default createGlobalStyle`
 
@@ -6,17 +7,13 @@ export default createGlobalStyle`
 
   body {
     font: 14px 'Roboto', sans-serif;
-    background: rgba(211, 211, 211, 0.62);
+    background: rgb(239, 239, 239);
     -webkit-font-smoothing: antialiased !important;
   }
 
   * {
-    max-height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-
-  /* h1, h2, h3, h4, h5 {
-    background: -webkit-linear-gradient(#c02425, #f0cb35);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  } */
 `

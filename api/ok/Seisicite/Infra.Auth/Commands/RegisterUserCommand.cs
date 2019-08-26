@@ -19,5 +19,7 @@ namespace Infra.Auth.Commands
     public string Password { get; set; }
     [Required]
     public EUserType Type  { get; set; }
+    [Required]
+    public string Name { get; set; }
   }
 }

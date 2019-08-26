@@ -42,6 +42,11 @@ namespace Infra.Auth.CommandHandlers
     {
       var user = new MongoIdentityUser(request.Email, request.Email);
 
+      user.Name        = request.Name;
+      user.IsSicite    = true;
+      user.IsSei       = true;
+      user.Institution = "UTFPR";
+
       user.AddClaim(new MongoUserClaim("Email", request.Email));
       user.AddClaim(new MongoUserClaim("Type", request.Type.ToString()));
 

@@ -1,27 +1,7 @@
-import React, { Fragment } from "react";
-import { Router, Route, Switch, Redirect } from "react-router-dom";
-//import { ModalContainer } from "react-router-modal";
-//import "react-router-modal/css/react-router-modal.css";
+import React, { Suspense, lazy } from "react";
+import { Router, Route, Switch } from "react-router-dom";
 import history from './history';
-import Home from "./pages/home";
-import Login from "./pages/login";
-import articles from "./pages/articles";
-
-//import { isAuthenticated } from "./services/auth";
-
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      //TODO controlar autenticação de alguma forma
-      false ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-      )
-    }
-  />
-);
+import Loading from "./components/Loading";
 
 const NoMatch = () => (
   <h2>
@@ -29,17 +9,20 @@ const NoMatch = () => (
   </h2>
 );
 
+const Login = lazy(() => import("./pages/login/login"));
+const Home = lazy(() => import("./pages/home/index"));
+const ArticlesSei = lazy(() => import("./pages/articles/index-sei"));
+
 const Routes = () => (
   <Router history={history}>
-    <Fragment>
+    <Suspense fallback={<Loading />}>
       <Switch>
-        <Route exact path={["", "/"]} component={Home} />
-        <Route path="/articles" component={articles} />
+        <Route exact path={["", "/", "/home"]} component={Home} />
+        <Route exact path="/articles/sei" component={ArticlesSei} />
         <Route path="/login" component={Login} />
-        <Route path="/secret" component={() => <h1>aaaa</h1>} />
         <Route component={NoMatch} />
       </Switch>
-    </Fragment>
+    </Suspense>
   </Router>
 );
 

@@ -1,6 +1,6 @@
-c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\WebApi\bin\Debug\netcoreapp2.2\WebApi.deps.json
-c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\WebApi\bin\Debug\netcoreapp2.2\WebApi.runtimeconfig.json
-c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\WebApi\bin\Debug\netcoreapp2.2\WebApi.runtimeconfig.dev.json
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\WebApi\bin\Debug\netcoreapp2.2\WebApi.deps.json
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\WebApi\bin\Debug\netcoreapp2.2\WebApi.runtimeconfig.json
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\WebApi\bin\Debug\netcoreapp2.2\WebApi.runtimeconfig.dev.json
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\WebApi\bin\Debug\netcoreapp2.2\WebApi.dll
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\WebApi\bin\Debug\netcoreapp2.2\WebApi.pdb
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\WebApi\bin\Debug\netcoreapp2.2\Application.Api.dll
@@ -26,6 +26,6 @@ C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\WebAp
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\WebApi\obj\Debug\netcoreapp2.2\WebApi.AssemblyInfoInputs.cache
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\WebApi\obj\Debug\netcoreapp2.2\WebApi.AssemblyInfo.cs
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\WebApi\obj\Debug\netcoreapp2.2\WebApi.RazorTargetAssemblyInfo.cache
-c:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\WebApi\obj\Debug\netcoreapp2.2\WebApi.csproj.CopyComplete
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\WebApi\obj\Debug\netcoreapp2.2\WebApi.csproj.CopyComplete
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\WebApi\obj\Debug\netcoreapp2.2\WebApi.dll
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\WebApi\obj\Debug\netcoreapp2.2\WebApi.pdb

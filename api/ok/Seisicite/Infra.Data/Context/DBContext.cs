@@ -18,8 +18,6 @@ namespace Infra.Data.Context
         var mongoClient = new MongoClient(connectionString);
 
         db = mongoClient.GetDatabase("Seisicite");
-
-        BsonSerializer.RegisterSerializer(typeof(DateTime), new BsonUtcDateTimeSerializer());
       }
 
       return db;

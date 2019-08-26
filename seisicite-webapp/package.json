@@ -5,19 +5,22 @@
   "dependencies": {
     "@material-ui/core": "^4.2.1",
     "@material-ui/icons": "^4.2.1",
+    "@material-ui/pickers": "^3.2.2",
     "axios": "^0.19.0",
+    "classnames": "^2.2.6",
+    "clsx": "^1.0.4",
     "deepmerge": "^4.0.0",
     "formik": "^1.5.8",
-    "grommet": "^2.7.4",
-    "grommet-controls": "^1.1.21",
-    "grommet-icons": "^4.2.0",
-    "grommet-theme-aruba": "^0.1.2",
     "jwt-decode": "^2.2.0",
+    "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
-    "styled-components": "^4.3.2"
+    "react-spinners": "^0.5.12",
+    "react-toast-notifications": "^2.2.4",
+    "styled-components": "^4.3.2",
+    "yup": "^0.27.0"
   },
   "scripts": {
     "start": "react-scripts start",

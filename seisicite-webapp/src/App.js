@@ -1,18 +1,23 @@
 import React from "react";
-import { Grommet, grommet } from "grommet";
-import { aruba } from "grommet-theme-aruba";
 import GlobalStyle from "./styles/global";
+import { ToastProvider } from 'react-toast-notifications';
+import ToastContainer from './components/Toast/ToastContainer';
 import Routes from "./routes";
-import merge from 'deepmerge';
-import Theme from './styles/theme';
+import { ThemeProvider } from 'styled-components'
 
-//const theme = merge(aruba, Theme);
+const theme = {
+  palette: {
+    primary: '##ff928b',
+  },
+};
 
 const App = () => (
-  <Grommet theme={grommet} full={true}>
-    <Routes />
-    <GlobalStyle />
-  </Grommet>
+  <ThemeProvider theme={theme}>
+    <ToastProvider placement={'bottom-right'} components={{ ToastContainer: ToastContainer }}>
+      <Routes />
+      <GlobalStyle />
+    </ToastProvider >
+  </ThemeProvider>
 );
 
 export default App;
