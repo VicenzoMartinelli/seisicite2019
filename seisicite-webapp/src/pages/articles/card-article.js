@@ -12,8 +12,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CreateIcon from '@material-ui/icons/Create';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { primaryColor } from '../../styles/kit';
 
-export default function CardArticle({ title, resume, primaryAuthor, submissionId, modality, startDate, onEditClick }) {
+export default function CardArticle({ id, title, resume, primaryAuthor, submissionId, modality, startDate, onEditClick }) {
 
   const useStyles = makeStyles(theme => ({
     card: {
@@ -36,7 +37,7 @@ export default function CardArticle({ title, resume, primaryAuthor, submissionId
       transform: 'rotate(180deg)',
     },
     avatar: {
-      backgroundColor: '#000',
+      backgroundColor: primaryColor,
     },
     resume: {
       fontSize: '.5rem'
@@ -51,7 +52,6 @@ export default function CardArticle({ title, resume, primaryAuthor, submissionId
   const classes = useStyles();
 
   const [expanded, setExpanded] = React.useState(false);
-  console.log(primaryAuthor, modality)
   function handleExpandClick() {
     setExpanded(!expanded);
   }

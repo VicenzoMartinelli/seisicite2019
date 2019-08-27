@@ -4,11 +4,12 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import ExitToApp from '@material-ui/icons/ExitToApp';
 import AccountCircleOutlined from '@material-ui/icons/AccountCircleOutlined';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -18,9 +19,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 import HomeOutlined from '@material-ui/icons/HomeOutlined';
 import { primaryColor } from '../../styles/kit';
 import { getConfirm } from '../../services/auth';
-import { Box } from '@material-ui/core';
+import { Box, Paper } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { ReceiptOutlined, AssignmentOutlined, AssignmentSharp } from '@material-ui/icons';
+import * as auth from '../../services/auth';
+import history from '../../history';
 
 const drawerWidth = 240;
 
@@ -98,7 +101,13 @@ const useStyles = makeStyles(theme => ({
   },
   colorPrimary: {
     color: primaryColor
-  }
+  },
+  paper: {
+    position: 'absolute',
+    top: 36,
+    right: 0,
+    left: 0,
+  },
 }));
 
 export default function Header({ open, setOpen, ...rest }) {
@@ -106,8 +115,7 @@ export default function Header({ open, setOpen, ...rest }) {
   const theme = useTheme();
   const confirm = getConfirm();
   const setOpened = setOpen;
-
-  console.log(confirm);
+  const [openDrop, setOpenDrop] = React.useState(false);
 
   function handleDrawerOpen() {
     setOpened(true);
@@ -115,6 +123,17 @@ export default function Header({ open, setOpen, ...rest }) {
 
   function handleDrawerClose() {
     setOpened(false);
+  }
+  function handleClickAway() {
+    setOpenDrop(false);
+  };
+  function handleClickDropdown() {
+    setOpenDrop(true);
+  };
+
+  function handleExit() {
+    auth.logout();
+    history.replace('/login');
   }
 
   return (
@@ -143,7 +162,21 @@ export default function Header({ open, setOpen, ...rest }) {
               <Typography variant="h6" className={classes.colorPrimary} noWrap>
                 {confirm.Email}
               </Typography>
-              <AccountCircleOutlined htmlColor={primaryColor} className={classes.margLeftSmall} />
+              <ClickAwayListener onClickAway={handleClickAway}>
+                <div>
+                  <IconButton onClick={handleClickDropdown}>
+                    <AccountCircleOutlined htmlColor={primaryColor} className={classes.margLeftSmall} />
+                  </IconButton>
+                  {openDrop ? (
+                    <Paper className={classes.paper}>
+                      <IconButton
+                        onClick={handleExit}>
+                        <ExitToApp />
+                      </IconButton>
+                    </Paper>
+                  ) : null}
+                </div>
+              </ClickAwayListener>
             </Box>
 
           </Box>

@@ -15,7 +15,7 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
+import Save from '@material-ui/icons/Save';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import AppBar from '@material-ui/core/AppBar';
@@ -23,7 +23,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
-import { findArticles } from '../../services/api';
+import { findArticles, findAvaliadores } from '../../services/api';
 import { toLocalDate } from '../../services/date-utils';
 import * as Yup from 'yup';
 import {
@@ -108,6 +108,7 @@ function ArticlesSei() {
   const classes = useStyles();
   const [open, setOpened] = React.useState(false);
   const [data, setData] = useState([]);
+  const [dataAvaliadores, setDataAvaliadores] = useState([]);
   const [page, setPage] = useState(0);
   const [submissaoAtual, setSubmissaoAtual] = useState({});
   const [openModal, setOpenModal] = React.useState(false);
@@ -123,7 +124,7 @@ function ArticlesSei() {
           <Typography variant="h6" className={classes.title}>
             Subimissão: {submissaoAtual.submissionId}
           </Typography>
-          <Button color="inherit" onClick={handleClose}>save</Button>
+          <Button color="inherit" onClick={handleClose}><Save /> Salvar</Button>
         </Toolbar>
       </AppBar>
       <div style={{ width: '80%', margin: '10px auto' }}>
@@ -206,15 +207,14 @@ function ArticlesSei() {
                   }}
                 />
                 <FormControl className={classes.formControl} fullWidth={true}>
-                  <InputLabel htmlFor="age-helper">Avaliador</InputLabel>
+                  <InputLabel htmlFor="appraiser">Avaliador</InputLabel>
                   <Select
-                    value={'31231515aa'}
+                    value={values.appraiser}
                     onChange={handleChange}
-                    input={<Input name="appraiser" id="appraiser" />}
-                  >
-                    <MenuItem value={'gu18312312'}>1</MenuItem>
-                    <MenuItem value={'1231231233'}>2</MenuItem>
-                    <MenuItem value={'31231515aa'}>appraiser3</MenuItem>
+                    input={<Input name="appraiser" id="appraiser" />}>
+                    {dataAvaliadores.map((x) => (
+                      <MenuItem value={x.id}>{x.name}</MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
               </form>
@@ -247,7 +247,6 @@ function ArticlesSei() {
         history.push("/");
       })
       .catch(err => {
-        console.log(err)
         addToast(err, { appearance: 'error', autoDismiss: true });
       });
   };
@@ -264,6 +263,17 @@ function ArticlesSei() {
 
     loadData();
   }, []);
+
+  useEffect(() => {
+    async function loadDataAvaliadores() {
+      findAvaliadores(1)
+        .then(res => {
+          setDataAvaliadores(res.data);
+        });
+    }
+
+    loadDataAvaliadores();
+  }, [])
 
   return (
     <div className={classes.root}>

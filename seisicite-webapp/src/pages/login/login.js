@@ -15,9 +15,9 @@ import CardHeader from "../../components/Card/CardHeader.jsx";
 import CardFooter from "../../components/Card/CardFooter.jsx";
 import CustomInput from "../../components/CustomInput/CustomInput.jsx";
 import * as Yup from 'yup';
+import { useToasts } from 'react-toast-notifications';
 import loginPageStyle from "./login-style";
 import image from '../../imgs/login.svg';
-import { useToasts } from 'react-toast-notifications';
 import {
   Formik
 } from 'formik';
@@ -48,7 +48,7 @@ const LoginPage = (props) => {
     auth
       .login(values.email, values.password)
       .then(res => {
-        
+
         if (res.success !== undefined && !res.success) {
           addToast(res.msg, { appearance: 'error', autoDismiss: true });
           return;

@@ -23,3 +23,7 @@ export const findArticles = async (event, page) => {
 
   return await api.get(`articles/${event}`, params);
 }
+
+export const findAvaliadores = async (event) => {
+  return await api.get(`articles/avaliadores/${event}`);
+} 
