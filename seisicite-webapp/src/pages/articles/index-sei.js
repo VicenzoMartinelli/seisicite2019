@@ -1,40 +1,32 @@
 import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors'
+import {
+  Slide, IconButton, AppBar, Toolbar, Select, FormControl, InputLabel, MenuItem, CssBaseline, Typography, Container, Paper, Grid, Divider, Button, Dialog, Input,
+  FormLabel, RadioGroup, FormControlLabel, Radio, Fab
+} from '@material-ui/core';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import withAuth from '../../components/withAuth';
 import { primaryColor } from '../../styles/kit';
 import Header from '../../components/Header';
-import { Container, Paper, Grid, Divider } from '@material-ui/core';
 import CardArticle from './card-article';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import Input from '@material-ui/core/Input';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FilledInput from '@material-ui/core/FilledInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Save from '@material-ui/icons/Save';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Slide from '@material-ui/core/Slide';
-import { findArticles, findAvaliadores } from '../../services/api';
-import { toLocalDate } from '../../services/date-utils';
+import { Save, Close as CloseIcon } from '@material-ui/icons';
+import { findArticles, findAvaliadores, findModalidades, saveArticle } from '../../services/api';
+import { toLocalDateShortString } from '../../services/date-utils';
+import DateFnsUtils from '@date-io/date-fns';
+import locale from 'date-fns/locale/pt-BR'
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 import * as Yup from 'yup';
 import {
   Formik
 } from 'formik';
 import { useToasts } from 'react-toast-notifications';
 import CustomInput from "../../components/CustomInput/CustomInput.jsx";
-import history from '../../history';
-import InputAdornment from "@material-ui/core/InputAdornment";
-import { Email, LockOutlined, FormatAlignJustify } from "@material-ui/icons";
-import * as auth from '../../services/auth';
+import { __values } from 'tslib';
 
 const valSchema = Yup.object().shape({
   email: Yup
@@ -92,11 +84,37 @@ const useStyles = makeStyles(theme => ({
   },
   appBar: {
     position: 'relative',
-    background: primaryColor
+    background: 'primary',
+    color: 'white'
+  },
+  closeButton: {
+    color: 'white'
   },
   title: {
     marginLeft: theme.spacing(2),
     flex: 1,
+  },
+  label: {
+    color: "#AAAAAA !important",
+    fontSize: "14px"
+  },
+  formControlMargin: {
+    marginTop: '10px'
+  },
+  typeGroup: {
+    flexDirection: 'row',
+    "&:first-child": {
+      marginLeft: '0'
+    }
+  },
+  fab: {
+    position: 'absolute',
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+    backgroundColor: green[500],
+    '&:hover': {
+      backgroundColor: green[600],
+    },
   },
 }));
 
@@ -109,124 +127,229 @@ function ArticlesSei() {
   const [open, setOpened] = React.useState(false);
   const [data, setData] = useState([]);
   const [dataAvaliadores, setDataAvaliadores] = useState([]);
+  const [dataModalidades, setDataModalidades] = useState([]);
   const [page, setPage] = useState(0);
   const [submissaoAtual, setSubmissaoAtual] = useState({});
+
   const [openModal, setOpenModal] = React.useState(false);
   const { addToast } = useToasts();
 
   const FullScreenModal = () => {
-    return (<Dialog fullScreen open={openModal} onClose={handleClose} TransitionComponent={Transition}>
-      <AppBar className={classes.appBar}>
-        <Toolbar>
-          <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
-            <CloseIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Subimissão: {submissaoAtual.submissionId}
-          </Typography>
-          <Button color="inherit" onClick={handleClose}><Save /> Salvar</Button>
-        </Toolbar>
-      </AppBar>
-      <div style={{ width: '80%', margin: '10px auto' }}>
-        <Formik
-          initialValues={submissaoAtual}
-          onSubmit={onSubmit}
-          validationSchema={valSchema}
-        >
-          {(props) => {
-            const {
-              values,
-              touched,
-              errors,
-              dirty,
-              handleChange,
-              handleSubmit,
-            } = props;
-            return (
-              <form onSubmit={handleSubmit}>
-                <CustomInput
-                  labelText="Título"
-                  error={(errors.title && touched.title)}
-                  labelError={(errors.title && touched.title) && errors.title}
-                  id="title"
-                  formControlProps={{
-                    fullWidth: true
-                  }}
-                  inputProps={{
-                    type: "text",
-                    value: values.title,
-                    onChange: handleChange
-                  }}
-                />
-                <CustomInput
-                  labelText="Local"
-                  error={(errors.building && touched.building)}
-                  labelError={(errors.building && touched.building) && errors.building}
-                  id="building"
-                  formControlProps={{
-                    fullWidth: true
-                  }}
-                  inputProps={{
-                    type: "text",
-                    value: values.building,
-                    onChange: handleChange,
-                    placeholder: 'UTFPR',
-                    autoComplete: "off"
-                  }}
-                />
-                <CustomInput
-                  labelText="Sala"
-                  error={(errors.room && touched.room)}
-                  labelError={(errors.room && touched.room) && errors.room}
-                  id="room"
-                  formControlProps={{
-                    fullWidth: true
-                  }}
-                  inputProps={{
-                    type: "text",
-                    value: values.room,
-                    onChange: handleChange,
-                    placeHolder: 'UTFPR',
-                    autoComplete: "off"
-                  }}
-                />
-                <CustomInput
-                  labelText="Detalhes sobre o local"
-                  error={(errors.localDetails && touched.localDetails)}
-                  labelError={(errors.localDetails && touched.localDetails) && errors.localDetails}
-                  id="localDetails"
-                  formControlProps={{
-                    fullWidth: true
-                  }}
-                  inputProps={{
-                    type: "text",
-                    value: values.localDetails,
-                    onChange: handleChange,
-                    placeHolder: 'UTFPR',
-                    autoComplete: "off"
-                  }}
-                />
-                <FormControl className={classes.formControl} fullWidth={true}>
-                  <InputLabel htmlFor="appraiser">Avaliador</InputLabel>
-                  <Select
-                    value={values.appraiser}
-                    onChange={handleChange}
-                    input={<Input name="appraiser" id="appraiser" />}>
-                    {dataAvaliadores.map((x) => (
-                      <MenuItem value={x.id}>{x.name}</MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </form>
-            );
-          }}
-        </Formik>
-      </div>
-    </Dialog>);
+
+    return (
+      <Dialog fullScreen open={openModal} onClose={handleClose} TransitionComponent={Transition}>
+        <AppBar className={classes.appBar}>
+          <Toolbar>
+            <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
+              <CloseIcon className={classes.closeButton} />
+            </IconButton>
+            <Typography variant="h6" className={classes.title}>
+              Subimissão: {submissaoAtual.submissionId}
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <div style={{ width: '80%', margin: '10px auto' }}>
+          <Formik
+            initialValues={submissaoAtual}
+            onSubmit={onSubmit}
+          >
+            {(props) => {
+              const {
+                values,
+                touched,
+                errors,
+                handleChange,
+                handleSubmit,
+                setFieldValue,
+                submitForm
+              } = props;
+
+              const handleDataChange = (date) => {
+                setFieldValue('startDate', date);
+              }
+
+              return (
+                <form onSubmit={handleSubmit}>
+                  <CustomInput
+                    labelText="Título"
+                    error={(errors.title && touched.title)}
+                    labelError={(errors.title && touched.title) && errors.title}
+                    id="title"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type: "text",
+                      value: values.title,
+                      onChange: handleChange
+                    }}
+                  />
+                  <CustomInput
+                    labelText="Local"
+                    error={(errors.building && touched.building)}
+                    labelError={(errors.building && touched.building) && errors.building}
+                    id="building"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type: "text",
+                      value: values.building,
+                      onChange: handleChange,
+                      placeholder: 'UTFPR',
+                      autoComplete: "off"
+                    }}
+                  />
+                  <CustomInput
+                    labelText="Sala"
+                    error={(errors.room && touched.room)}
+                    labelError={(errors.room && touched.room) && errors.room}
+                    id="room"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type: "text",
+                      value: values.room,
+                      onChange: handleChange,
+                      placeholder: 'UTFPR',
+                      autoComplete: "off"
+                    }}
+                  />
+                  <CustomInput
+                    labelText="Detalhes sobre o local"
+                    error={(errors.localDetails && touched.localDetails)}
+                    labelError={(errors.localDetails && touched.localDetails) && errors.localDetails}
+                    id="localDetails"
+                    formControlProps={{ fullWidth: true }}
+                    inputProps={{
+                      type: "text",
+                      value: values.localDetails,
+                      onChange: handleChange,
+                      placeholder: 'UTFPR',
+                      autoComplete: "off"
+                    }}
+                  />
+                  <FormControl fullWidth={true}>
+                    <InputLabel className={classes.label} htmlFor="evaluatorId">Avaliador</InputLabel>
+                    <Select
+                      value={values.evaluatorId}
+                      onChange={handleChange}
+                      input={<Input name="evaluatorId" id="evaluatorId" />}>
+                      {dataAvaliadores.map((x) => (
+                        <MenuItem key={x.id} value={x.id}>{x.name}</MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+
+                  <FormControl fullWidth={true} className={classes.formControlMargin} >
+                    <InputLabel className={classes.label} htmlFor="evaluator2Id">2º Avaliador</InputLabel>
+                    <Select
+                      value={values.evaluator2Id}
+                      onChange={handleChange}
+                      input={<Input name="evaluator2Id" id="evaluator2Id" />}>
+                      {dataAvaliadores.map((x) => (
+                        <MenuItem key={x.id} value={x.id}>{x.name}</MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+
+                  <FormControl className={classes.formControlMargin} fullWidth={true}>
+                    <InputLabel className={classes.label} htmlFor="modality">Modalidade</InputLabel>
+                    <Select
+                      value={values.modality}
+                      onChange={handleChange}
+                      input={<Input name="modality" id="modality" />}>
+                      {dataModalidades.map((x) => (
+                        <MenuItem key={x} value={x}>{x}</MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+
+                  <CustomInput
+                    labelText="Resumo"
+                    error={(errors.resume && touched.resume)}
+                    labelError={(errors.resume && touched.resume) && errors.resume}
+                    id="resume"
+                    formControlProps={{ fullWidth: true }}
+                    inputProps={{
+                      type: "text",
+                      value: values.resume,
+                      onChange: handleChange,
+                      autoComplete: "off",
+                      multiline: true
+                    }}
+                  />
+
+                  <FormControl fullWidth={true} className={classes.formControlMargin}>
+                    <FormLabel component="legend">Tipo da apresentação</FormLabel>
+                    <RadioGroup
+                      aria-label="type"
+                      name="type"
+                      className={classes.typeGroup}
+                      value={values.type}
+                      onChange={handleChange}
+                    >
+                      <FormControlLabel
+                        value={1}
+                        control={<Radio name="type" color="primary" />}
+                        label="Pôster"
+                        labelPlacement="start"
+                      />
+                      <FormControlLabel
+                        value={2}
+                        control={<Radio name="type" color="primary" />}
+                        label="Oral"
+                        labelPlacement="start"
+                      />
+                    </RadioGroup>
+                  </FormControl>
+
+                  <FormControl fullWidth={true} className={classes.formControlMargin}>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={locale}>
+                      <Grid container justify="space-around">
+                        <KeyboardDatePicker
+                          margin="normal"
+                          id="dateArticle"
+                          label="Data da apresentação"
+                          format="dd/MM/yyyy"
+                          value={values.startDate}
+                          onChange={handleDataChange}
+                          KeyboardButtonProps={{
+                            'aria-label': 'Alterar data',
+                          }}
+                        />
+                        <KeyboardTimePicker
+                          margin="normal"
+                          id="hourArticle"
+                          format="HH:mm"
+                          label="Horário"
+                          value={values.startDate}
+                          onChange={handleDataChange}
+                          KeyboardButtonProps={{
+                            'aria-label': 'Alterar horário',
+                          }}
+                        />
+                      </Grid>
+                    </MuiPickersUtilsProvider>
+                  </FormControl>
+                  <Fab aria-label={'Salvar'} className={classes.fab} onClick={submitForm}>
+                    <Save />
+                  </Fab>
+                </form>
+              );
+            }}
+          </Formik>
+        </div>
+      </Dialog >);
   };
 
   function handleClickOpen(article) {
     setOpenModal(true);
+    article.evaluatorId = article.evaluatorId === null ? '' : article.evaluatorId;
+    article.evaluator2Id = article.evaluator2Id === null ? '' : article.evaluator2Id;
+    article.startDate = new Date(article.startDate);
+
     setSubmissaoAtual(article);
   }
   function handleClose() {
@@ -235,18 +358,17 @@ function ArticlesSei() {
   const onSubmit = (values, bag) => {
     bag.setSubmitting(true);
 
-    auth
-      .login(values.email, values.password)
+    saveArticle(values)
       .then(res => {
-
         if (res.success !== undefined && !res.success) {
           addToast(res.msg, { appearance: 'error', autoDismiss: true });
           return;
         }
 
-        history.push("/");
+        setSubmissaoAtual(res.data.result);
       })
       .catch(err => {
+        console.log(err)
         addToast(err, { appearance: 'error', autoDismiss: true });
       });
   };
@@ -273,7 +395,18 @@ function ArticlesSei() {
     }
 
     loadDataAvaliadores();
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    async function loadDataModalidades() {
+      findModalidades()
+        .then(res => {
+          setDataModalidades(res.data);
+        });
+    }
+
+    loadDataModalidades();
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -284,7 +417,7 @@ function ArticlesSei() {
           [classes.contentShift]: open
         })}
       >
-        <Container className={classes.main} maxWidth="lg">
+        <Container className={classes.main} maxWidth={false}>
           <Paper>
             <Typography variant="h5" className={classes.titleArticles}>
               Artigos
@@ -299,7 +432,7 @@ function ArticlesSei() {
                     primaryAuthor={x.primaryAuthor}
                     submissionId={x.submissionId}
                     modality={x.modality}
-                    startDate={toLocalDate(x.startDate)}
+                    startDate={toLocalDateShortString(x.startDate)}
                     onEditClick={() => handleClickOpen(x)}
                   />
                 </Grid>
@@ -307,6 +440,7 @@ function ArticlesSei() {
             </Grid>
           </Paper>
         </Container>
+
         <FullScreenModal />
       </main>
     </div >

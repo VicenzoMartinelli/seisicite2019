@@ -4,6 +4,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -19,7 +20,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import HomeOutlined from '@material-ui/icons/HomeOutlined';
 import { primaryColor } from '../../styles/kit';
 import { getConfirm } from '../../services/auth';
-import { Box, Paper } from '@material-ui/core';
+import { Box, Popover } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { ReceiptOutlined, AssignmentOutlined, AssignmentSharp } from '@material-ui/icons';
 import * as auth from '../../services/auth';
@@ -102,12 +103,12 @@ const useStyles = makeStyles(theme => ({
   colorPrimary: {
     color: primaryColor
   },
-  paper: {
-    position: 'absolute',
-    top: 36,
-    right: 0,
-    left: 0,
+  fab: {
+    margin: theme.spacing(1),
   },
+  extendedIcon: {
+    marginRight: theme.spacing(1),
+  }
 }));
 
 export default function Header({ open, setOpen, ...rest }) {
@@ -116,7 +117,11 @@ export default function Header({ open, setOpen, ...rest }) {
   const confirm = getConfirm();
   const setOpened = setOpen;
   const [openDrop, setOpenDrop] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
+  function handleClose() {
+    setAnchorEl(null);
+  }
   function handleDrawerOpen() {
     setOpened(true);
   }
@@ -127,7 +132,8 @@ export default function Header({ open, setOpen, ...rest }) {
   function handleClickAway() {
     setOpenDrop(false);
   };
-  function handleClickDropdown() {
+  function handleClickDropdown(event) {
+    setAnchorEl(event.currentTarget);
     setOpenDrop(true);
   };
 
@@ -135,6 +141,8 @@ export default function Header({ open, setOpen, ...rest }) {
     auth.logout();
     history.replace('/login');
   }
+
+  const id = openDrop ? 'simple-popover' : undefined;
 
   return (
     <>
@@ -165,16 +173,31 @@ export default function Header({ open, setOpen, ...rest }) {
               <ClickAwayListener onClickAway={handleClickAway}>
                 <div>
                   <IconButton onClick={handleClickDropdown}>
-                    <AccountCircleOutlined htmlColor={primaryColor} className={classes.margLeftSmall} />
+                    <AccountCircleOutlined htmlColor={primaryColor} />
                   </IconButton>
-                  {openDrop ? (
-                    <Paper className={classes.paper}>
-                      <IconButton
-                        onClick={handleExit}>
-                        <ExitToApp />
-                      </IconButton>
-                    </Paper>
-                  ) : null}
+                  <Popover
+                    id={id}
+                    open={openDrop}
+                    onClose={handleClose}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'center',
+                    }}
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'center',
+                    }}
+                  >
+                    <List component="nav" aria-label="main mailbox folders">
+                      <ListItem button onClick={handleExit}>
+                        <ListItemIcon>
+                          <ExitToApp className={classes.extendedIcon} />
+                        </ListItemIcon>
+                        <ListItemText primary="Sair" />
+                      </ListItem>
+                    </List>
+                  </Popover>
                 </div>
               </ClickAwayListener>
             </Box>

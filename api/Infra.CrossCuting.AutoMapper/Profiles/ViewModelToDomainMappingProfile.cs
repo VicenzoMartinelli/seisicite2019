@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using Application.Api.Commands;
+using AutoMapper;
+using Domains.Article;
 
 namespace Infra.CrossCuting.AutoMapper.Profiles
 {
@@ -6,16 +8,8 @@ namespace Infra.CrossCuting.AutoMapper.Profiles
   {
     public ViewModelToDomainMappingProfile()
     {
-      //CreateMap<RegisterNewAlunosCommand, Alunos>()
-      //    .IgnoreAllPropertiesWithAnInaccessibleSetter();
-      //CreateMap<AlunosViewModel, Alunos>()
-      //    .IgnoreAllPropertiesWithAnInaccessibleSetter()
-      //    .ForMember(x => x.Sexo, cfg => cfg.MapFrom(o => o.Sexo.ToString()));
-      //CreateMap<UpdateAlunosCommand, Alunos>()
-      //    .IgnoreAllPropertiesWithAnInaccessibleSetter();
-
-      //CreateMap<RegisterNewMidiaCommand, Midias>();
-      //CreateMap<UpdateMidiaCommand, Midias>();
+      CreateMap<UpdateArticleCommand, Article>()
+        .ForMember(x => x.ApresentationType, (src) => src.MapFrom(s => s.Type));
     }
   }
 }

@@ -5,10 +5,7 @@ using Infra.Data.Repository;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson.Serialization;
-using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Infra.Ioc.Configs
 {
@@ -18,16 +15,15 @@ namespace Infra.Ioc.Configs
     {
 
       BsonSerializer.RegisterSerializer(typeof(DateTime), new BsonUtcDateTimeSerializer());
-      
+
       services.AddScoped<IDBContext, DBContext>();
 
-      services.AddScoped<IMongoDatabase>((x) =>
+      services.AddScoped((x) =>
       {
         return x.GetService<IDBContext>().GetDatabase(x.GetService<IConfiguration>().GetConnectionString("MongoServer"));
       });
 
       services.AddScoped<IRepository, Repository>();
-      services.AddScoped<IRepositoryArticle, RepositoryArticle>();
 
     }
   }

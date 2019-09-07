@@ -40,7 +40,7 @@ export default function CardArticle({ id, title, resume, primaryAuthor, submissi
       backgroundColor: primaryColor,
     },
     resume: {
-      fontSize: '.5rem'
+      fontSize: '.65rem'
     },
     MuiCardHeader: {
       root: {
@@ -69,7 +69,7 @@ export default function CardArticle({ id, title, resume, primaryAuthor, submissi
         style={{ padding: '12px 20px' }}
       />
       <CardContent
-        style={{ padding: '0px 20px', 'min-height': 133 }}
+        style={{ padding: '0px 20px', minHeight: 133 }}
       >
         <Badge color="primary">{submissionId}</Badge>
         <Typography variant="body2" color="textSecondary" style={{ marginTop: '5px' }} component="p">

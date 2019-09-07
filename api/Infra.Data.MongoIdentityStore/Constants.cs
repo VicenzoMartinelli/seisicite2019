@@ -5,6 +5,6 @@ namespace Infra.Data.MongoIdentityStore
 {
     internal static class Constants
     {
-        public const string DefaultCollectionName = "users";
+        public const string DefaultCollectionName = "IdentityUser";
     }
 }

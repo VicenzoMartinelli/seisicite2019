@@ -7,7 +7,7 @@ namespace Infra.Ioc
 {
   public static class NativeInjectorBootStrapper
   {
-    public static void RegisterServices(IServiceCollection services)
+    public static void AddNativeBootStrapper(this IServiceCollection services)
     {
       services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

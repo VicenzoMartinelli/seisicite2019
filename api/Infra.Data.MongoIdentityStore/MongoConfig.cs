@@ -37,9 +37,6 @@ namespace Infra.Data.MongoIdentityStore
             BsonClassMap.RegisterClassMap<MongoIdentityUser>(cm =>
             {
                 cm.AutoMap();
-                cm.MapProperty(x => x.IsSei).SetElementName("isSei");
-                cm.MapProperty(x => x.IsSicite).SetElementName("isSicite");
-                cm.MapProperty(x => x.Institution).SetElementName("institution");
                 cm.MapIdMember(c => c.Id)
                     .SetSerializer(new StringSerializer(BsonType.ObjectId))
                     .SetIdGenerator(StringObjectIdGenerator.Instance);

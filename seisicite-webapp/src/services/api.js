@@ -2,7 +2,7 @@ import axios from "axios";
 import * as auth from './auth';
 
 const api = axios.create({
-  baseURL: "http://localhost:5000"
+  baseURL: "https://localhost:44321"
 });
 
 api.interceptors.request.use(
@@ -14,8 +14,6 @@ api.interceptors.request.use(
   err => Promise.reject(err),
 );
 
-export default api;
-
 export const findArticles = async (event, page) => {
   const params = new URLSearchParams();
 
@@ -26,4 +24,23 @@ export const findArticles = async (event, page) => {
 
 export const findAvaliadores = async (event) => {
   return await api.get(`articles/avaliadores/${event}`);
-} 
+}
+
+export const findModalidades = async () => {
+  return await api.get(`articles/modalities`);
+}
+
+export const saveArticle = async (article) => {
+  try {
+    const res = await api.put(`/articles`, article);
+
+    return Promise.resolve(res);
+  } catch (error) {
+    return Promise.resolve({
+      success: false,
+      msg: error.response.data.occurrences ? error.response.data.occurrences[0].message : error.response.data
+    });
+  }
+};
+
+export default api;

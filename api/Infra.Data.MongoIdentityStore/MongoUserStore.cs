@@ -618,13 +618,10 @@ namespace Infra.Data.MongoIdentityStore
       var emailKeyBuilder = Builders<TUser>.IndexKeys.Ascending(user => user.Email.Value);
       var loginKeyBuilder = Builders<TUser>.IndexKeys.Ascending("logins.loginProvider").Ascending("logins.providerKey");
 
-      var tasks = new[]
-      {
-                _usersCollection.Indexes.CreateOneAsync(emailKeyBuilder, new CreateIndexOptions { Unique = true, Name = indexNames.UniqueEmail }),
-                _usersCollection.Indexes.CreateOneAsync(loginKeyBuilder, new CreateIndexOptions { Name = indexNames.Login })
-            };
-
-      await Task.WhenAll(tasks).ConfigureAwait(false);
+      await _usersCollection.Indexes.CreateManyAsync(new CreateIndexModel<TUser>[] {
+        new CreateIndexModel<TUser>(emailKeyBuilder, new CreateIndexOptions { Unique = true, Name = indexNames.UniqueEmail }),
+        new CreateIndexModel<TUser>(loginKeyBuilder, new CreateIndexOptions { Name = indexNames.Login })
+      }).ConfigureAwait(false);
     }
 
     private const string AuthenticatorStoreLoginProvider = "[AspNetAuthenticatorStore]";

@@ -33,13 +33,8 @@ namespace Infra.Data.MongoIdentityStore
 
     public MongoIdentityUser(string userName)
     {
-      if (userName == null)
-      {
-        throw new ArgumentNullException(nameof(userName));
-      }
-
       Id = ObjectId.GenerateNewId().ToString();
-      UserName = userName;
+      UserName = userName ?? throw new ArgumentNullException(nameof(userName));
       CreatedOn = new Occurrence();
 
       EnsureClaimsIsSet();
@@ -119,12 +114,6 @@ namespace Infra.Data.MongoIdentityStore
 
     public Occurrence CreatedOn { get; set; }
     public Occurrence DeletedOn { get; set; }
-    public EUserType Type { get; set; }
-    public string Institution { get; set; }
-    public bool IsSei { get; set; }
-    public bool IsSicite { get; set; }
-    public string Name { get; set; }
-
     public virtual void EnableTwoFactorAuthentication()
     {
       IsTwoFactorEnabled = true;
@@ -158,12 +147,7 @@ namespace Infra.Data.MongoIdentityStore
 
     public virtual void SetNormalizedUserName(string normalizedUserName)
     {
-      if (normalizedUserName == null)
-      {
-        throw new ArgumentNullException(nameof(normalizedUserName));
-      }
-
-      NormalizedUserName = normalizedUserName;
+      NormalizedUserName = normalizedUserName ?? throw new ArgumentNullException(nameof(normalizedUserName));
     }
 
     public virtual void SetPhoneNumber(string phoneNumber)

@@ -1,5 +1,6 @@
-﻿using AutoMapper;
-using System;
+﻿using Application.Api.ViewModels;
+using AutoMapper;
+using Domains.Article;
 
 namespace Infra.CrossCuting.AutoMapper.Profiles
 {
@@ -7,8 +8,8 @@ namespace Infra.CrossCuting.AutoMapper.Profiles
   {
     public DomainToViewModelMappingProfile()
     {
-      //CreateMap<Alunos, RegisterNewAlunosCommand>()
-      //    .IgnoreAllPropertiesWithAnInaccessibleSetter();
+      CreateMap<Article, ArticleViewModel>()
+        .ForMember(x => x.Type, (src) => src.MapFrom(x => x.ApresentationType));
     }
   }
 }

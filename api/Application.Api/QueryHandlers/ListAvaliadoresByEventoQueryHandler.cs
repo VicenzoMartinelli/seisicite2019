@@ -1,15 +1,15 @@
-using System.Linq;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Application.Api.Commands;
 using Application.Api.Queries;
+using Application.Api.ViewModels;
+using Domain.Domains.Article;
 using Domain.Interfaces;
 using Domains.Article;
-using MediatR;
-using Application.Api.ViewModels;
 using Infra.Data.MongoIdentityStore;
+using MediatR;
 using MongoDB.Driver;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Application.Api.QueryHandlers
 {
@@ -23,11 +23,21 @@ namespace Application.Api.QueryHandlers
     }
     public async Task<List<AvaliadorViewModel>> Handle(ListAvaliadoresByEventoQuery request, CancellationToken cancellationToken)
     {
-      var filterObj = request.Event == EEventIdentifier.Sei ? 
-          Builders<MongoIdentityUser>.Filter.Eq(x => x.IsSei, true) :
-          Builders<MongoIdentityUser>.Filter.Eq(x => x.IsSicite, true);
+      var filterEvent = request.Event == EEventIdentifier.Sei ?
+        Builders<Person>.Filter.Eq(x => x.IsSei, true) :
+        Builders<Person>.Filter.Eq(x => x.IsSicite, true);
 
-      var items = await _repository.GetByFilter(filterObj, "users");
+      var filters = new List<FilterDefinition<Person>>() {
+        Builders<Person>.Filter.Eq(x => x.Type, EUserType.Evaluator),
+        filterEvent
+      };
+
+      if (!string.IsNullOrEmpty(request.Modality))
+      {
+        filters.Add(Builders<Person>.Filter.AnyEq(x => x.AttendedModalities, request.Modality));
+      }
+
+      var items = await _repository.GetByFilter(Builders<Person>.Filter.And(filters));
 
       return items.Select(x => new AvaliadorViewModel()
       {

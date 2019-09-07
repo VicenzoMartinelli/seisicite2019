@@ -4,9 +4,9 @@ import history from './history';
 import Loading from "./components/Loading";
 
 const NoMatch = () => (
-  <h2>
-    nada aqui irmao
-  </h2>
+  <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
+    <h2> Nada aqui :( </h2>
+  </div>
 );
 
 const Login = lazy(() => import("./pages/login/login"));

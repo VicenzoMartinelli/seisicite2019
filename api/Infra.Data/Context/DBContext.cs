@@ -1,9 +1,4 @@
-﻿using System.Linq;
-using MongoDB.Driver;
-using System;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
-using Infra.Data.Config;
+﻿using MongoDB.Driver;
 
 namespace Infra.Data.Context
 {
@@ -13,7 +8,7 @@ namespace Infra.Data.Context
 
     public IMongoDatabase GetDatabase(string connectionString)
     {
-      if(db == null)
+      if (db == null)
       {
         var mongoClient = new MongoClient(connectionString);
 

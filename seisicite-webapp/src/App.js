@@ -3,21 +3,17 @@ import GlobalStyle from "./styles/global";
 import { ToastProvider } from 'react-toast-notifications';
 import ToastContainer from './components/Toast/ToastContainer';
 import Routes from "./routes";
-import { ThemeProvider } from 'styled-components'
+import { MuiThemeProvider } from "@material-ui/core";
+import theme from './styles/theme';
 
-const theme = {
-  palette: {
-    primary: '##ff928b',
-  },
-};
 
 const App = () => (
-  <ThemeProvider theme={theme}>
+  <MuiThemeProvider theme={theme}>
     <ToastProvider placement={'bottom-right'} components={{ ToastContainer: ToastContainer }}>
       <Routes />
       <GlobalStyle />
     </ToastProvider >
-  </ThemeProvider>
+  </MuiThemeProvider>
 );
 
 export default App;

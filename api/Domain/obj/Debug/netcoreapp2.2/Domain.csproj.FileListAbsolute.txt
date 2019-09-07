@@ -7,3 +7,6 @@ C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Domai
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Domain\obj\Debug\netcoreapp2.2\Domain.AssemblyInfo.cs
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Domain\obj\Debug\netcoreapp2.2\Domain.dll
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Domain\obj\Debug\netcoreapp2.2\Domain.pdb
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Domain\bin\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.dll
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Domain\bin\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.pdb
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Domain\obj\Debug\netcoreapp2.2\Domain.csproj.CopyComplete

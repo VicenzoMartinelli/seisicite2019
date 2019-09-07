@@ -33,5 +33,8 @@ namespace Domain.Core.Enumerators
 
     [Display(Name = "Registro não encontrado")]
     RegistroNaoEncontrado = 2001,
+
+    [Display(Name = "Seu usuário não foi aprovado pela comissão!")]
+    UsuarioNaoAprovado = 2002,
   }
 }

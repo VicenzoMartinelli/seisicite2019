@@ -25,12 +25,11 @@ namespace Application.Api.CommandHandlers
             {
                 tasks.Add(_repository.AddAsync(new Article{
                      SubmissionId         = item.IdDaSubmissão.ToString(),
-                     ApresentationType    = EApresentationType.Present,
+                     ApresentationType    = EApresentationType.Poster,
                      AssessmentStatus     = EAssessmentStatus.Opened,
                      Event                = request.Event,
                      Building             = item.Prédio,
                      StartDate            = string.IsNullOrEmpty(item.DataDeInício) ? new DateTime(2019, 11, 11) : Convert.ToDateTime(item.DataDeInício),
-                     EndDate              = string.IsNullOrEmpty(item.DataDeTérmino) ? new DateTime(year: 2019, month: 11, day: 13) : Convert.ToDateTime(item.DataDeTérmino),
                      DirectorDecision     = item.DecisãoDoDiretor,
                      Language             = item.Idioma,
                      Modality             = item.TítuloDaModalidade,

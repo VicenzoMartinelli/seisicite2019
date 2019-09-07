@@ -2287,9 +2287,12 @@
           "AutoMapper": "8.1.1",
           "Domain": "1.0.0",
           "Domain.Core": "1.0.0",
+          "Infra.CrossCuting.Shared": "1.0.0",
           "Infra.Data": "1.0.0",
           "Infra.Data.MongoIdentityStore": "1.0.0",
-          "Newtonsoft.Json": "12.0.2"
+          "Microsoft.AspNetCore.Identity": "2.2.0",
+          "Newtonsoft.Json": "12.0.2",
+          "System.IdentityModel.Tokens.Jwt": "5.5.0"
         },
         "compile": {
           "bin/placeholder/Application.Api.dll": {}
@@ -2302,6 +2305,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
+          "Infra.Data.MongoIdentityStore": "1.0.0",
           "MongoDB.Bson": "2.8.1",
           "MongoDB.Driver": "2.8.1"
         },
@@ -2325,22 +2329,17 @@
           "bin/placeholder/Domain.Core.dll": {}
         }
       },
-      "Infra.Auth/1.0.0": {
+      "Infra.CrossCuting.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
-          "Domain": "1.0.0",
-          "Domain.Core": "1.0.0",
-          "Infra.Data.MongoIdentityStore": "1.0.0",
-          "MediatR": "7.0.0",
-          "Microsoft.AspNetCore.Identity": "2.2.0",
-          "System.IdentityModel.Tokens.Jwt": "5.5.0"
+          "MediatR": "7.0.0"
         },
         "compile": {
-          "bin/placeholder/Infra.Auth.dll": {}
+          "bin/placeholder/Infra.CrossCuting.Shared.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Infra.Auth.dll": {}
+          "bin/placeholder/Infra.CrossCuting.Shared.dll": {}
         }
       },
       "Infra.Data/1.0.0": {
@@ -7546,10 +7545,10 @@
       "path": "../Domain.Core/Domain.Core.csproj",
       "msbuildProject": "../Domain.Core/Domain.Core.csproj"
     },
-    "Infra.Auth/1.0.0": {
+    "Infra.CrossCuting.Shared/1.0.0": {
       "type": "project",
-      "path": "../Infra.Auth/Infra.Auth.csproj",
-      "msbuildProject": "../Infra.Auth/Infra.Auth.csproj"
+      "path": "../Infra.CrossCuting.Shared/Infra.CrossCuting.Shared.csproj",
+      "msbuildProject": "../Infra.CrossCuting.Shared/Infra.CrossCuting.Shared.csproj"
     },
     "Infra.Data/1.0.0": {
       "type": "project",
@@ -7568,7 +7567,6 @@
       "AutoMapper >= 8.1.1",
       "Domain >= 1.0.0",
       "Domain.Core >= 1.0.0",
-      "Infra.Auth >= 1.0.0",
       "Infra.Data >= 1.0.0",
       "Infra.Data.MongoIdentityStore >= 1.0.0",
       "MediatR >= 7.0.0",
@@ -7617,9 +7615,6 @@
             },
             "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Domain\\Domain.csproj": {
               "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Domain\\Domain.csproj"
-            },
-            "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.Auth\\Infra.Auth.csproj": {
-              "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.Auth\\Infra.Auth.csproj"
             },
             "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.Data.MongoIdentityStore\\Infra.Data.MongoIdentityStore.csproj": {
               "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.Data.MongoIdentityStore\\Infra.Data.MongoIdentityStore.csproj"
