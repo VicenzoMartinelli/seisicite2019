@@ -715,11 +715,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Domain.Core\\Domain.Core.csproj",
+      "projectUniqueName": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Domain.Core\\Domain.Core.csproj",
       "projectName": "Domain.Core",
-      "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Domain.Core\\Domain.Core.csproj",
+      "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Domain.Core\\Domain.Core.csproj",
       "packagesPath": "C:\\Users\\Vicenzo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Domain.Core\\obj\\",
+      "outputPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Domain.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

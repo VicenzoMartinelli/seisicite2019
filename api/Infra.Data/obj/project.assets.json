@@ -6787,11 +6787,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.Data\\Infra.Data.csproj",
+      "projectUniqueName": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.Data\\Infra.Data.csproj",
       "projectName": "Infra.Data",
-      "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.Data\\Infra.Data.csproj",
+      "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.Data\\Infra.Data.csproj",
       "packagesPath": "C:\\Users\\Vicenzo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.Data\\obj\\",
+      "outputPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -6810,8 +6810,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Domain\\Domain.csproj"
+            "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Domain\\Domain.csproj"
             }
           }
         }

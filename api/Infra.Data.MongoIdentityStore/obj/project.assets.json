@@ -6747,11 +6747,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.Data.MongoIdentityStore\\Infra.Data.MongoIdentityStore.csproj",
+      "projectUniqueName": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.Data.MongoIdentityStore\\Infra.Data.MongoIdentityStore.csproj",
       "projectName": "Infra.Data.MongoIdentityStore",
-      "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.Data.MongoIdentityStore\\Infra.Data.MongoIdentityStore.csproj",
+      "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.Data.MongoIdentityStore\\Infra.Data.MongoIdentityStore.csproj",
       "packagesPath": "C:\\Users\\Vicenzo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.Data.MongoIdentityStore\\obj\\",
+      "outputPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.Data.MongoIdentityStore\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

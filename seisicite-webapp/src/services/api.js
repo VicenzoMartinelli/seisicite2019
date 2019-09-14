@@ -43,4 +43,17 @@ export const saveArticle = async (article) => {
   }
 };
 
+export const sortArticles = async (event) => {
+  try {
+    const res = await api.put(`/articles/sort/${event}`);
+
+    return Promise.resolve(res);
+  } catch (error) {
+    return Promise.resolve({
+      success: false,
+      msg: error.response.data.occurrences ? error.response.data.occurrences[0].message : error.response.data
+    });
+  }
+};
+
 export default api;

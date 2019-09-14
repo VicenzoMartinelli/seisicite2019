@@ -715,11 +715,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.CrossCuting.Shared\\Infra.CrossCuting.Shared.csproj",
+      "projectUniqueName": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.CrossCuting.Shared\\Infra.CrossCuting.Shared.csproj",
       "projectName": "Infra.CrossCuting.Shared",
-      "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.CrossCuting.Shared\\Infra.CrossCuting.Shared.csproj",
+      "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.CrossCuting.Shared\\Infra.CrossCuting.Shared.csproj",
       "packagesPath": "C:\\Users\\Vicenzo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.CrossCuting.Shared\\obj\\",
+      "outputPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.CrossCuting.Shared\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

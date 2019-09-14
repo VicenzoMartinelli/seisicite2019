@@ -17,6 +17,14 @@ namespace Domain.Domains.Article
     public bool Approved { get; set; }
     public string Name { get; set; }
     public string Email { get; set; }
+    public int ArticlesCount { get; set; }
     public List<string> AttendedModalities { get; set; }
+
+    public Person IncrementArticleCount()
+    {
+      ArticlesCount++;
+
+      return this;
+    }
   }
 }

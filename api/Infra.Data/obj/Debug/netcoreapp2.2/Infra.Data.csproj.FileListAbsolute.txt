@@ -12,3 +12,17 @@ C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Data\obj\Debug\netcoreapp2.2\Infra.Data.pdb
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Data\bin\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.dll
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Data\bin\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.pdb
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.Data\bin\Debug\netcoreapp2.2\Infra.Data.deps.json
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.Data\bin\Debug\netcoreapp2.2\Infra.Data.dll
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.Data\bin\Debug\netcoreapp2.2\Infra.Data.pdb
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.Data\bin\Debug\netcoreapp2.2\Domain.dll
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.Data\bin\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.dll
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.Data\bin\Debug\netcoreapp2.2\Domain.pdb
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.Data\bin\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.pdb
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.Data\obj\Debug\netcoreapp2.2\Infra.Data.csprojAssemblyReference.cache
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.Data\obj\Debug\netcoreapp2.2\Infra.Data.csproj.CoreCompileInputs.cache
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.Data\obj\Debug\netcoreapp2.2\Infra.Data.AssemblyInfoInputs.cache
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.Data\obj\Debug\netcoreapp2.2\Infra.Data.AssemblyInfo.cs
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.Data\obj\Debug\netcoreapp2.2\Infra.Data.csproj.CopyComplete
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.Data\obj\Debug\netcoreapp2.2\Infra.Data.dll
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.Data\obj\Debug\netcoreapp2.2\Infra.Data.pdb

@@ -6,6 +6,7 @@ using Domains.Article;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Services.Seisicite.Api.Commands;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -56,6 +57,17 @@ namespace Services.Seisicite.Api.Controllers
       var value = await _mediator.Send(command);
 
       if (!value.IsSuccess)
+        return await ResponseNotificationsAsync();
+
+      return await ResponseOkAsync(value);
+    }
+
+    [HttpPut("sort/{eventId}")]
+    public async Task<IActionResult> SortArticles(EEventIdentifier eventId)
+    {
+      var value = await _mediator.Send(new SortArticleEvaluatorsCommand(eventId));
+
+      if (!value)
         return await ResponseNotificationsAsync();
 
       return await ResponseOkAsync(value);

@@ -7584,11 +7584,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.CrossCuting.IoC\\Infra.CrossCuting.IoC.csproj",
+      "projectUniqueName": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.CrossCuting.IoC\\Infra.CrossCuting.IoC.csproj",
       "projectName": "Infra.CrossCuting.IoC",
-      "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.CrossCuting.IoC\\Infra.CrossCuting.IoC.csproj",
+      "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.CrossCuting.IoC\\Infra.CrossCuting.IoC.csproj",
       "packagesPath": "C:\\Users\\Vicenzo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.CrossCuting.IoC\\obj\\",
+      "outputPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.CrossCuting.IoC\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -7607,20 +7607,20 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Application.Api\\Application.Api.csproj": {
-              "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Application.Api\\Application.Api.csproj"
+            "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Application.Api\\Application.Api.csproj": {
+              "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Application.Api\\Application.Api.csproj"
             },
-            "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Domain.Core\\Domain.Core.csproj": {
-              "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Domain.Core\\Domain.Core.csproj"
+            "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Domain.Core\\Domain.Core.csproj": {
+              "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Domain.Core\\Domain.Core.csproj"
             },
-            "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Domain\\Domain.csproj"
+            "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Domain\\Domain.csproj"
             },
-            "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.Data.MongoIdentityStore\\Infra.Data.MongoIdentityStore.csproj": {
-              "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.Data.MongoIdentityStore\\Infra.Data.MongoIdentityStore.csproj"
+            "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.Data.MongoIdentityStore\\Infra.Data.MongoIdentityStore.csproj": {
+              "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.Data.MongoIdentityStore\\Infra.Data.MongoIdentityStore.csproj"
             },
-            "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.Data\\Infra.Data.csproj": {
-              "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\ok\\Seisicite\\Infra.Data\\Infra.Data.csproj"
+            "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.Data\\Infra.Data.csproj": {
+              "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.Data\\Infra.Data.csproj"
             }
           }
         }

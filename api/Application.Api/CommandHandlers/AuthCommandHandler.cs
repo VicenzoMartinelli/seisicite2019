@@ -65,7 +65,8 @@ namespace Services.Seisicite.Api.CommandHandlers
         Name           = request.Name,
         Email          = request.Email,
         Type           = EUserType.Committee,
-        Approved       = true
+        Approved       = true,
+        ArticlesCount  = 0
       };
 
       await _repository.AddAsync<Person>(user);
@@ -103,7 +104,8 @@ namespace Services.Seisicite.Api.CommandHandlers
         AttendedModalities = request.Modalities,
         Institution        = request.Institution,
         Type               = EUserType.Evaluator,
-        Approved           = false
+        Approved           = false,
+        ArticlesCount      = 0
       });
 
       await _signInManager.SignInAsync(identityUser, false);
