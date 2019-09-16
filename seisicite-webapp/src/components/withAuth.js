@@ -1,33 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 import * as auth from "../services/auth";
 import history from "../history";
 
 export default function withAuth(AuthComponent) {
-  return () => {
-    const [confirm, setConfirm] = useState(null);
-    const [loaded, setLoaded] = useState(false);
+  return class WithAuth extends Component {
 
-    useEffect(() => {
+    state = { confirm: null, loaded: false };
+
+    componentDidMount() {
       if (!auth.loggedIn()) {
         auth.logout();
 
         history.replace("/login");
       } else {
         try {
-          setConfirm(auth.getConfirm());
-          setLoaded(true);
+          this.setState({
+            confirm: auth.getConfirm(),
+            loaded: true
+          });
         } catch (err) {
           auth.logout();
 
           history.replace("/login");
         }
       }
-    }, []);
-
-    if (loaded && confirm) {
-      return <AuthComponent history={history} confirm={confirm} />;
     }
 
-    return null;
-  };
-}
+    render() {
+      if (this.state.loaded && this.state.confirm) {
+        return <AuthComponent history={history} confirm={this.state.confirm} {...this.props} />;
+      }
+
+      return null;
+    }
+  }
+};

@@ -70,7 +70,11 @@ namespace Services.Seisicite.Api.Controllers
       if (!value)
         return await ResponseNotificationsAsync();
 
-      return await ResponseOkAsync(value);
+      var newList = await _mediator.Send(new ListArticlesPaginatedByEventQuery {
+        Event = eventId
+      });
+
+      return await ResponseOkAsync(newList);
     }
   }
 }

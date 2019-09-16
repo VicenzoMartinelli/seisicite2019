@@ -58,19 +58,5 @@ namespace Services.Seisicite.Api.Controllers
 
       return await ResponseOkAsync(result);
     }
-
-    [HttpPut("{id}/approve")]
-    [ClaimRequirement("Type", nameof(EUserType.Committee))]
-    public async Task<IActionResult> ApproveUser(string id)
-    {
-      var result = await _mediator.Send(new ApproveEvaluatorCommand() { UserId = id });
-
-      if (!result)
-      {
-        return await ResponseNotificationsAsync();
-      }
-
-      return await ResponseOkAsync(result);
-    }
   }
 }

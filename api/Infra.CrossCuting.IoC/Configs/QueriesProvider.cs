@@ -18,6 +18,9 @@ namespace Infra.Ioc.Configs
       services.AddScoped<IRequestHandler<ListArticlesPaginatedByEventQuery, PaginatedList<ArticleViewModel>>, ListArticlesPaginatedByEventQueryHandler>();
       services.AddScoped<IRequestHandler<ListAvaliadoresByEventoQuery, List<AvaliadorViewModel>>, ListAvaliadoresByEventoQueryHandler>();
       services.AddScoped<IRequestHandler<ListModalitiesQuery, List<string>>, ListModalitiesQueryHandler>();
+
+      services.AddScoped<IRequestHandler<ListEvaluatorsToApproveQuery, List<AvaliadorViewModel>>, ListEvaluatorsToApproveQueryHandler>();
+      services.AddScoped<IRequestHandler<ListApprovedsEvaluatorsQuery, List<AvaliadorViewModel>>, ListApprovedsEvaluatorsQueryHandler>();
     }
   }
 }

@@ -1,43 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors'
-import {
-  Slide, IconButton, AppBar, Toolbar, Select, FormControl, InputLabel, MenuItem, CssBaseline, Typography, Container, Paper, Grid, Divider, Button, Dialog, Input,
-  FormLabel, RadioGroup, FormControlLabel, Radio, Fab, Box
-} from '@material-ui/core';
+import { CssBaseline, Container, Paper, Divider } from '@material-ui/core';
 import clsx from 'clsx';
 import withAuth from '../../components/withAuth';
 import { primaryColor } from '../../styles/kit';
 import Header from '../../components/Header';
-import CardArticle from './card-article';
-import { Save, Close as CloseIcon, HowToReg as HowToRegIcon } from '@material-ui/icons';
-import { findArticles, findAvaliadores, findModalidades, saveArticle } from '../../services/api';
-import { toLocalDateShortString } from '../../services/date-utils';
-import DateFnsUtils from '@date-io/date-fns';
-import locale from 'date-fns/locale/pt-BR'
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
-import * as Yup from 'yup';
-import {
-  Formik
-} from 'formik';
+import { findArticles, findAvaliadores, findModalidades, saveArticle, sortArticles } from '../../services/api';
 import { useToasts } from 'react-toast-notifications';
-import CustomInput from "../../components/CustomInput/CustomInput.jsx";
-import { __values } from 'tslib';
-
-const valSchema = Yup.object().shape({
-  email: Yup
-    .string()
-    .email()
-    .required('Informe um email válido'),
-  password: Yup
-    .string()
-    .required('Informe a senha')
-    .min(6, "A senha deve possuir no mínimo 6 caracteres")
-});
+import ListContent from './ListContent';
+import ModalArticleEdit from './ModalArticleEdit';
+import ListHeader from './ListHeader';
+import ModalSortConfirm from './ModalSortConfirm';
+import Loading from "../../components/Loading";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -127,274 +102,106 @@ const useStyles = makeStyles(theme => ({
   },
   btnSort: {
     margin: theme.spacing(1)
+  },
+  marginTopElement: {
+    marginTop: theme.spacing(1)
+  },
+  footerForm: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
+  },
+  animationSpin: {
+    animation: 'spin 1s infinite linear'
   }
 }));
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
-
-function ArticlesSei() {
+function Articles({ event }) {
   const classes = useStyles();
-  const [open, setOpened] = React.useState(false);
   const [data, setData] = useState([]);
   const [dataAvaliadores, setDataAvaliadores] = useState([]);
   const [dataModalidades, setDataModalidades] = useState([]);
-  const [page, setPage] = useState(0);
   const [submissaoAtual, setSubmissaoAtual] = useState({});
 
-  const [openModal, setOpenModal] = React.useState(false);
+  const [opering, setOpering] = useState(true);
+  const [open, setOpened] = useState(false);
+  const [sortOpened, setSortOpened] = useState(false);
+  const [editOpened, setEditOpened] = useState(false);
   const { addToast } = useToasts();
 
-  const FullScreenModal = () => {
-
-    return (
-      <Dialog fullScreen open={openModal} onClose={handleClose} TransitionComponent={Transition}>
-        <AppBar className={classes.appBar}>
-          <Toolbar>
-            <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
-              <CloseIcon className={classes.closeButton} />
-            </IconButton>
-            <Typography variant="h6" className={classes.title}>
-              Subimissão: {submissaoAtual.submissionId}
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <div style={{ width: '80%', margin: '10px auto' }}>
-          <Formik
-            initialValues={submissaoAtual}
-            onSubmit={onSubmit}
-          >
-            {(props) => {
-              const {
-                values,
-                touched,
-                errors,
-                handleChange,
-                handleSubmit,
-                setFieldValue,
-                submitForm
-              } = props;
-
-              const handleDataChange = (date) => {
-                setFieldValue('startDate', date);
-              }
-
-              return (
-                <form onSubmit={handleSubmit}>
-                  <CustomInput
-                    labelText="Título"
-                    error={(errors.title && touched.title)}
-                    labelError={(errors.title && touched.title) && errors.title}
-                    id="title"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      type: "text",
-                      value: values.title,
-                      onChange: handleChange
-                    }}
-                  />
-                  <CustomInput
-                    labelText="Local"
-                    error={(errors.building && touched.building)}
-                    labelError={(errors.building && touched.building) && errors.building}
-                    id="building"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      type: "text",
-                      value: values.building,
-                      onChange: handleChange,
-                      placeholder: 'UTFPR',
-                      autoComplete: "off"
-                    }}
-                  />
-                  <CustomInput
-                    labelText="Sala"
-                    error={(errors.room && touched.room)}
-                    labelError={(errors.room && touched.room) && errors.room}
-                    id="room"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      type: "text",
-                      value: values.room,
-                      onChange: handleChange,
-                      placeholder: 'UTFPR',
-                      autoComplete: "off"
-                    }}
-                  />
-                  <CustomInput
-                    labelText="Detalhes sobre o local"
-                    error={(errors.localDetails && touched.localDetails)}
-                    labelError={(errors.localDetails && touched.localDetails) && errors.localDetails}
-                    id="localDetails"
-                    formControlProps={{ fullWidth: true }}
-                    inputProps={{
-                      type: "text",
-                      value: values.localDetails,
-                      onChange: handleChange,
-                      placeholder: 'UTFPR',
-                      autoComplete: "off"
-                    }}
-                  />
-                  <FormControl fullWidth={true}>
-                    <InputLabel className={classes.label} htmlFor="evaluatorId">Avaliador</InputLabel>
-                    <Select
-                      value={values.evaluatorId}
-                      onChange={handleChange}
-                      input={<Input name="evaluatorId" id="evaluatorId" />}>
-                      {dataAvaliadores.map((x) => (
-                        <MenuItem key={x.id} value={x.id}>{x.name}</MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-
-                  <FormControl fullWidth={true} className={classes.formControlMargin} >
-                    <InputLabel className={classes.label} htmlFor="evaluator2Id">2º Avaliador</InputLabel>
-                    <Select
-                      value={values.evaluator2Id}
-                      onChange={handleChange}
-                      input={<Input name="evaluator2Id" id="evaluator2Id" />}>
-                      {dataAvaliadores.map((x) => (
-                        <MenuItem key={x.id} value={x.id}>{x.name}</MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-
-                  <FormControl className={classes.formControlMargin} fullWidth={true}>
-                    <InputLabel className={classes.label} htmlFor="modality">Modalidade</InputLabel>
-                    <Select
-                      value={values.modality}
-                      onChange={handleChange}
-                      input={<Input name="modality" id="modality" />}>
-                      {dataModalidades.map((x) => (
-                        <MenuItem key={x} value={x}>{x}</MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-
-                  <CustomInput
-                    labelText="Resumo"
-                    error={(errors.resume && touched.resume)}
-                    labelError={(errors.resume && touched.resume) && errors.resume}
-                    id="resume"
-                    formControlProps={{ fullWidth: true }}
-                    inputProps={{
-                      type: "text",
-                      value: values.resume,
-                      onChange: handleChange,
-                      autoComplete: "off",
-                      multiline: true
-                    }}
-                  />
-
-                  <FormControl fullWidth={true} className={classes.formControlMargin}>
-                    <FormLabel component="legend">Tipo da apresentação</FormLabel>
-                    <RadioGroup
-                      aria-label="type"
-                      name="type"
-                      className={classes.typeGroup}
-                      value={values.type}
-                      onChange={handleChange}
-                    >
-                      <FormControlLabel
-                        value={1}
-                        control={<Radio name="type" color="primary" />}
-                        label="Pôster"
-                        labelPlacement="start"
-                      />
-                      <FormControlLabel
-                        value={2}
-                        control={<Radio name="type" color="primary" />}
-                        label="Oral"
-                        labelPlacement="start"
-                      />
-                    </RadioGroup>
-                  </FormControl>
-
-                  <FormControl fullWidth={true} className={classes.formControlMargin}>
-                    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={locale}>
-                      <Grid container justify="space-around">
-                        <KeyboardDatePicker
-                          margin="normal"
-                          id="dateArticle"
-                          label="Data da apresentação"
-                          format="dd/MM/yyyy"
-                          value={values.startDate}
-                          onChange={handleDataChange}
-                          KeyboardButtonProps={{
-                            'aria-label': 'Alterar data',
-                          }}
-                        />
-                        <KeyboardTimePicker
-                          margin="normal"
-                          id="hourArticle"
-                          format="HH:mm"
-                          label="Horário"
-                          value={values.startDate}
-                          onChange={handleDataChange}
-                          KeyboardButtonProps={{
-                            'aria-label': 'Alterar horário',
-                          }}
-                        />
-                      </Grid>
-                    </MuiPickersUtilsProvider>
-                  </FormControl>
-                  <Fab aria-label={'Salvar'} className={classes.fab} onClick={submitForm}>
-                    <Save />
-                  </Fab>
-                </form>
-              );
-            }}
-          </Formik>
-        </div>
-      </Dialog >);
-  };
-
   function handleClickOpen(article) {
-    setOpenModal(true);
+    setEditOpened(true);
     article.evaluatorId = article.evaluatorId === null ? '' : article.evaluatorId;
     article.evaluator2Id = article.evaluator2Id === null ? '' : article.evaluator2Id;
     article.startDate = new Date(article.startDate);
+    article.type = article.type + "";
 
     setSubmissaoAtual(article);
   }
-  function handleClose() {
-    setOpenModal(false);
+  function handleEditClose() {
+    setEditOpened(false);
   }
-  function handleSort{
+  function handleSort() {
+    setOpering(true);
 
+    sortArticles(event)
+      .then(res => {
+        if (res.success !== undefined && !res.success) {
+          addToast(res.msg, { appearance: 'error', autoDismiss: true });
+          setOpering(false);
+          return;
+        }
+        setData(res.data.items);
+        setSortOpened(false);
+        setOpering(false);
+        addToast("Operação realizada com sucesso!", { appearance: 'success', autoDismiss: true });
+      })
+      .catch(err => {
+        addToast(err, { appearance: 'error', autoDismiss: true });
+        setOpering(false);
+      });
   }
-  function onSubmit(values, bag) {
+  function handleSortClick() {
+    setSortOpened(true);
+  }
+  function handleSave(values, bag) {
     bag.setSubmitting(true);
+    setOpering(true);
 
     saveArticle(values)
       .then(res => {
         if (res.success !== undefined && !res.success) {
           addToast(res.msg, { appearance: 'error', autoDismiss: true });
+          setOpering(false);
           return;
         }
-
         setSubmissaoAtual(res.data.result);
+
+        let newData = data.copyWithin();
+        let index = newData.findIndex((x) => x.Id === res.data.result.Id);
+
+        if (index !== -1) {
+          newData[index] = res.data.result;
+        }
+        setOpering(false);
+        setData(newData);
+        addToast("Registro salvo com sucesso!", { appearance: 'success', autoDismiss: true });
       })
       .catch(err => {
         console.log(err)
+        setOpering(false);
         addToast(err, { appearance: 'error', autoDismiss: true });
       });
   };
 
   useEffect(() => {
     async function loadData() {
-      findArticles(1, page)
-        .then(res => {
-          setPage(res.data.page);
+      setOpering(true);
 
+      findArticles(event, 0)
+        .then(res => {
           setData(res.data.items);
+          setOpering(false);
         });
     }
 
@@ -432,41 +239,35 @@ function ArticlesSei() {
           [classes.contentShift]: open
         })}
       >
-        <Container className={classes.main} maxWidth={false}>
-          <Paper>
-            <Box className={classes.boxTitle}>
-              <Typography variant="h5" className={classes.titleArticles}>
-                Artigos
-              </Typography>
-              <div className={classes.divBtnSort}>
-                <Button variant="outlined" color="primary" className={classes.btnSort} onClick={handleSort}>
-                  <HowToRegIcon /> Sortear Avaliadores
-                </Button>
-              </div>
-            </Box>
-            <Divider />
-            <Grid className={classes.containerCards} container spacing={3}>
-              {data.map((x) => (
-                <Grid item sm={12} md={6} lg={4} key={x.id}>
-                  <CardArticle
-                    title={x.title}
-                    resume={x.resume}
-                    primaryAuthor={x.primaryAuthor}
-                    submissionId={x.submissionId}
-                    modality={x.modality}
-                    startDate={toLocalDateShortString(x.startDate)}
-                    onEditClick={() => handleClickOpen(x)}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-          </Paper>
-        </Container>
+        <Suspense fallback={<Loading />}>
+          <Container className={classes.main} maxWidth={false}>
+            <Paper>
+              <ListHeader classes={classes} handleSortClick={handleSortClick} />
+              <Divider />
+              {opering && <Loading w={'100%'} h='75vh' bgColor={'#FFF'} />}
+              {!opering && <ListContent classes={classes} data={data} handleClickOpen={handleClickOpen} />}
+            </Paper>
+          </Container>
 
-        <FullScreenModal />
+          <ModalArticleEdit
+            dataAvaliadores={dataAvaliadores}
+            dataModalidades={dataModalidades}
+            submissaoAtual={submissaoAtual}
+            editOpened={editOpened}
+            handleClose={handleEditClose}
+            handleSave={handleSave}
+            classes={classes}
+            savingOperation={opering}
+          />
+          <ModalSortConfirm
+            sortOpened={sortOpened}
+            setSortOpened={setSortOpened}
+            handleSort={handleSort}
+          />
+        </Suspense>
       </main>
     </div >
   );
 }
 
-export default withAuth(ArticlesSei);
+export default withAuth(Articles);

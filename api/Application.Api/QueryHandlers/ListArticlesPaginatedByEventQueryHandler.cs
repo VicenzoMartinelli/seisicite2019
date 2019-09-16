@@ -48,7 +48,8 @@ namespace Application.Api.QueryHandlers
             StartDate     = x.StartDate.ToLocalTime(),
             Type          = x.ApresentationType,
             Evaluator2Id  = x.Evaluator2Id,
-            EvaluatorId   = x.EvaluatorId
+            EvaluatorId   = x.EvaluatorId,
+            LocalDetails  = x.LocalDetails
         }).ToList()
       };
     }

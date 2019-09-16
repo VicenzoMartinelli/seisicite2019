@@ -29,6 +29,7 @@ namespace Application.Api.QueryHandlers
 
       var filters = new List<FilterDefinition<Person>>() {
         Builders<Person>.Filter.Eq(x => x.Type, EUserType.Evaluator),
+        Builders<Person>.Filter.Eq(x => x.Approved, true),
         filterEvent
       };
 

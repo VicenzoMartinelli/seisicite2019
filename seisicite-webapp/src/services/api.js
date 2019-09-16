@@ -56,4 +56,25 @@ export const sortArticles = async (event) => {
   }
 };
 
+export const findEvaluatorsToApprove = async () => {
+  return await api.get(`/evaluator/to-approve`);
+}
+
+export const findApprovedEvaluators = async () => {
+  return await api.get(`/evaluator/approveds`);
+}
+
+export const approve = async (ids) => {
+  try {
+    const res = await api.put(`/evaluator/approve`, ids);
+
+    return Promise.resolve(res);
+  } catch (error) {
+    return Promise.resolve({
+      success: false,
+      msg: error.response.data.occurrences ? error.response.data.occurrences[0].message : error.response.data
+    });
+  }
+};
+
 export default api;

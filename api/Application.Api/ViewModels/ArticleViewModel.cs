@@ -16,6 +16,7 @@ namespace Application.Api.ViewModels
     public EApresentationType Type { get; set; }
     public string Building { get; set; }
     public string Room { get; set; }
+    public string LocalDetails { get; set; }
     public string EvaluatorId { get; set; }
     public string Evaluator2Id { get; set; }
   }

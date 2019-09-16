@@ -77,5 +77,4 @@ function Home() {
     </div >
   );
 }
-
 export default withAuth(Home);

@@ -3,9 +3,9 @@ import { Section, Wrapper } from './style';
 import { primaryColor } from '../../styles/kit';
 import { RingLoader } from 'react-spinners';
 
-export default () => {
+const Loading = (props) => {
   return (
-    <Section>
+    <Section {...props}>
       <div>
         <RingLoader
           color={primaryColor}
@@ -16,3 +16,11 @@ export default () => {
     </Section>
   )
 }
+
+Loading.defaultProps = {
+  w: '100wh',
+  h: '100vh',
+  bgColor: '#e8e8e8'
+}
+
+export default Loading;

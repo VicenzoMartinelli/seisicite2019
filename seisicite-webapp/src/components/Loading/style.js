@@ -7,7 +7,7 @@ export const Section = styled.div`
   justify-content: center;
   justify-items: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: #e8e8e8;
+  width: ${props => props.w};
+  height: ${props => props.h};
+  background-color: ${props => props.bgColor};
 `;

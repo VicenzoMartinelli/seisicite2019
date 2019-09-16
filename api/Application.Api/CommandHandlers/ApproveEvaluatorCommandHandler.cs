@@ -2,9 +2,7 @@
 using Domain.Core.Notifications;
 using Domain.Domains.Article;
 using Domain.Interfaces;
-using Infra.Data.MongoIdentityStore;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Services.Seisicite.Api.Commands;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,17 +24,20 @@ namespace Services.Seisicite.Api.CommandHandlers
 
     public async Task<bool> Handle(ApproveEvaluatorCommand request, CancellationToken cancellationToken)
     {
-      var user = await _repository.GetByIdAsync<Person>(request.UserId);
-
-      if (user == null)
+      foreach (var id in request.UserIds)
       {
-        _notificationContext.PushNotification(ReturnCode.RegistroNaoEncontrado);
-        return false;
+        var user = await _repository.GetByIdAsync<Person>(id);
+
+        if (user == null)
+        {
+          _notificationContext.PushNotification(ReturnCode.RegistroNaoEncontrado);
+          continue;
+        }
+
+        user.Approved = true;
+
+        await _repository.UpdateAsync(user, user.Id);
       }
-
-      user.Approved = true;
-
-      await _repository.UpdateAsync(user, user.Id);
 
       return true;
     }

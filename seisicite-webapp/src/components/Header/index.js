@@ -22,7 +22,7 @@ import { primaryColor } from '../../styles/kit';
 import { getConfirm } from '../../services/auth';
 import { Box, Popover } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { ReceiptOutlined, AssignmentOutlined, AssignmentSharp } from '@material-ui/icons';
+import { ReceiptOutlined, AssignmentOutlined, AssignmentSharp, PersonOutline } from '@material-ui/icons';
 import * as auth from '../../services/auth';
 import history from '../../history';
 
@@ -220,22 +220,33 @@ export default function Header({ open, setOpen, ...rest }) {
           </IconButton>
         </div>
         <Divider />
-        <ListItem button component={Link} to={'/login'} >
+
+        <ListItem button component={Link} to={'/'} >
           <ListItemIcon><HomeOutlined htmlColor={primaryColor} /></ListItemIcon>
           <ListItemText className={classes.colorPrimary} primary={'Home'} />
         </ListItem>
         <Divider />
+
         <ListItem button component={Link} to={'/articles/sei'} >
           <ListItemIcon><AssignmentOutlined htmlColor={primaryColor} /></ListItemIcon>
           <ListItemText className={classes.colorPrimary} primary={'Artigos Sei'} />
         </ListItem>
 
-        <ListItem button component={Link} to={'/login'} >
+        <ListItem button component={Link} to={'/articles/sicite'} >
           <ListItemIcon><AssignmentSharp htmlColor={primaryColor} /></ListItemIcon>
           <ListItemText className={classes.colorPrimary} primary={'Artigos Sicite'} />
         </ListItem>
+
         <Divider />
-        <ListItem button component={Link} to={'/login'} >
+
+        <ListItem button component={Link} to={'/aprovacao-avaliadores'} >
+          <ListItemIcon><PersonOutline htmlColor={primaryColor} /></ListItemIcon>
+          <ListItemText className={classes.colorPrimary} primary={'Avaliadores'} />
+        </ListItem>
+
+        <Divider />
+
+        <ListItem button component={Link} to={'/relatorio'} >
           <ListItemIcon><ReceiptOutlined htmlColor={primaryColor} /></ListItemIcon>
           <ListItemText className={classes.colorPrimary} primary={'Relatório'} />
         </ListItem>

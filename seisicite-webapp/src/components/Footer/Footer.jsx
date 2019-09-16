@@ -11,10 +11,7 @@ function Footer({ ...props }) {
     [classes.footer]: true,
     [classes.footerWhiteFont]: whiteFont
   });
-  const aClasses = classNames({
-    [classes.a]: true,
-    [classes.footerWhiteFont]: whiteFont
-  });
+
   return (
     <footer className={footerClasses}>
       <div className={classes.container}>
@@ -25,6 +22,7 @@ function Footer({ ...props }) {
                 href="https://github.com/VicenzoMartinelli"
                 className={classes.block}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Powered by VicenzoMartinelli
               </a>
