@@ -11,7 +11,7 @@ export default function ListContent({
 }) {
   return (
     <>
-      {data.length === 0 && <div style={{ width: '50vh', margin: '5% auto' }}>
+      {data.length === 0 && <div style={{ width: '35vh', margin: '5% auto' }}>
         <img src={EmptyImage} style={{ width: '100%' }} />
         <p style={{ textAlign: 'center', color: '#ff928b' }}>Nenhum artigo encontrado</p>
       </div>}

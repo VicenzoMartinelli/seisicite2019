@@ -54,7 +54,7 @@ namespace Services.Seisicite.Api
         app.UseHsts();
       }
 
-      app.UseHttpsRedirection();
+      //app.UseHttpsRedirection();
 
       app.UseAuthentication();
 
