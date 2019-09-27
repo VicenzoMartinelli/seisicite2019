@@ -1,0 +1,12 @@
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Domain\bin\Release\netcoreapp2.2\Domain.deps.json
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Domain\bin\Release\netcoreapp2.2\Domain.dll
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Domain\bin\Release\netcoreapp2.2\Domain.pdb
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Domain\bin\Release\netcoreapp2.2\Infra.Data.MongoIdentityStore.dll
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Domain\bin\Release\netcoreapp2.2\Infra.Data.MongoIdentityStore.pdb
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Domain\obj\Release\netcoreapp2.2\Domain.csprojAssemblyReference.cache
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Domain\obj\Release\netcoreapp2.2\Domain.csproj.CoreCompileInputs.cache
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Domain\obj\Release\netcoreapp2.2\Domain.AssemblyInfoInputs.cache
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Domain\obj\Release\netcoreapp2.2\Domain.AssemblyInfo.cs
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Domain\obj\Release\netcoreapp2.2\Domain.csproj.CopyComplete
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Domain\obj\Release\netcoreapp2.2\Domain.dll
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Domain\obj\Release\netcoreapp2.2\Domain.pdb

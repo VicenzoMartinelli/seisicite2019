@@ -17,6 +17,7 @@ namespace Infra.Ioc.Configs
       services.AddScoped<IRequestHandler<UpdateArticleCommand, CommandResult<ArticleViewModel>>, UpdateArticleCommandHandler>();
       services.AddScoped<IRequestHandler<ApproveEvaluatorCommand, bool>, ApproveEvaluatorCommandHandler>();
       services.AddScoped<IRequestHandler<SortArticleEvaluatorsCommand, bool>, SortArticleEvaluatorsCommandHandler>();
+      services.AddScoped<IRequestHandler<CancelEvaluatorsCommand, bool>, CancelEvaluatorsCommandHandler>();
     }
   }
 }

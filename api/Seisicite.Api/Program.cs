@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Seisicite.Api.Extensions;
 
 namespace Services.Seisicite.Api
 {
@@ -7,12 +8,12 @@ namespace Services.Seisicite.Api
   {
     public static void Main(string[] args)
     {
-      CreateWebHostBuilder(args).Build().Run();
-    }
-
-    public static IWebHostBuilder CreateWebHostBuilder(string[] args)
-    {
-      return WebHost.CreateDefaultBuilder(args).UseStartup<Startup>();
+      WebHost
+        .CreateDefaultBuilder(args)
+        .UsePort()
+        .UseStartup<Startup>()
+        .Build()
+        .Run();
     }
   }
 }

@@ -54,5 +54,21 @@ namespace Seisicite.Api.Controllers
 
       return await ResponseOkAsync(res);
     }
+
+    [HttpPut("cancel")]
+    [ClaimRequirement("Type", nameof(EUserType.Committee))]
+    public async Task<IActionResult> CancelUsers([FromBody] IEnumerable<string> ids)
+    {
+      var result = await _mediator.Send(new CancelEvaluatorsCommand() { UserIds = ids });
+
+      if (!result)
+      {
+        return await ResponseNotificationsAsync();
+      }
+
+      var ok = await _mediator.Send(new ListEvaluatorsToApproveQuery());
+
+      return await ResponseOkAsync(ok);
+    }
   }
 }

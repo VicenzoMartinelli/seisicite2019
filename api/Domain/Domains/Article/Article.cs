@@ -26,6 +26,7 @@ namespace Domains.Article
     public string LocalDetails { get; set; }
     public string DirectorDecision { get; set; }
     public string Situation { get; set; }
+    public double Note { get; set; }
 
     internal TimeSpan Duration = TimeSpan.FromMinutes(15);
   }

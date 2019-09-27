@@ -19,7 +19,7 @@ import Box from '@material-ui/core/Box';
 import Badge from '@material-ui/core/Badge';
 import ClearIcon from '@material-ui/icons/Clear';
 import CheckIcon from '@material-ui/icons/Check';
-import { approve } from '../../services/api';
+import { approve, cancelEvaluators } from '../../services/api';
 
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -139,7 +139,7 @@ const useToolbarStyles = makeStyles(theme => ({
 
 const GridHeaderToolbar = props => {
   const classes = useToolbarStyles();
-  const { numSelected, handleApprove, toApprove } = props;
+  const { numSelected, handleApprove, handleCancel, toApprove } = props;
 
   return (
     <Toolbar
@@ -163,7 +163,7 @@ const GridHeaderToolbar = props => {
         {(numSelected > 0 && toApprove) && (
           <Box className={classes.containerActions}>
             <Tooltip title="Cancelar">
-              <IconButton aria-label="delete">
+              <IconButton onClick={handleCancel} aria-label="delete">
                 <ClearIcon />
               </IconButton>
             </Tooltip>
@@ -268,7 +268,30 @@ export default function EvaluatorGrid({ toApprove, rows, setRows, addToast, setO
 
     approve(selected)
       .then(async res => {
-        debugger;
+        if (res.success !== undefined && !res.success) {
+          addToast(res.msg, { appearance: 'error', autoDismiss: true });
+          setOpering(false);
+          return;
+        }
+        setRows(res.data);
+        setSelected([]);
+        handleRefresh(false)
+        setOpering(false);
+
+        addToast("Operação realizada com sucesso!", { appearance: 'success', autoDismiss: true });
+      })
+      .catch(err => {
+        console.log(err)
+        setOpering(false);
+        addToast(err, { appearance: 'error', autoDismiss: true });
+      });
+  }
+
+  function handleCancel() {
+    setOpering(true);
+
+    cancelEvaluators(selected)
+      .then(async res => {
         if (res.success !== undefined && !res.success) {
           addToast(res.msg, { appearance: 'error', autoDismiss: true });
           setOpering(false);
@@ -294,7 +317,7 @@ export default function EvaluatorGrid({ toApprove, rows, setRows, addToast, setO
 
   return (
     <Paper className={classes.paper}>
-      <GridHeaderToolbar toApprove={toApprove} selectedItems={selected} handleApprove={handleApprove} numSelected={selected.length} />
+      <GridHeaderToolbar toApprove={toApprove} selectedItems={selected} handleApprove={handleApprove} handleCancel={handleCancel} numSelected={selected.length} />
       <div className={classes.tableWrapper}>
         <Table
           className={classes.table}
