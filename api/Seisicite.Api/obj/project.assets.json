@@ -5127,7 +5127,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
-          "MediatR": "7.0.0"
+          "MediatR": "7.0.0",
+          "Newtonsoft.Json": "12.0.2"
         },
         "compile": {
           "bin/placeholder/Domain.Core.dll": {}

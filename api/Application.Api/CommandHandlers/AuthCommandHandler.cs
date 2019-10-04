@@ -19,7 +19,10 @@ using System.Threading.Tasks;
 
 namespace Services.Seisicite.Api.CommandHandlers
 {
-  public class AuthCommandHandler : IRequestHandler<RegisterUserCommand, Token>, IRequestHandler<RegisterUserEvaluatorCommand, Token>, IRequestHandler<LoginCommand, Token>
+  public class AuthCommandHandler : 
+      IRequestHandler<RegisterUserCommand, Token>, 
+      IRequestHandler<RegisterUserEvaluatorCommand, Token>, 
+      IRequestHandler<LoginCommand, Token>
   {
     private readonly SignInManager<MongoIdentityUser> _signInManager;
     private readonly UserManager<MongoIdentityUser> _userManager;
@@ -145,7 +148,16 @@ namespace Services.Seisicite.Api.CommandHandlers
         return null;
       }
 
-      return await GerarJwt(identityUser);
+      var tokenResult = await GerarJwt(identityUser);
+
+      tokenResult.Email      = user.Email;
+      tokenResult.IdentityId = identityUser.Id;
+      tokenResult.Name       = user.Name;
+      tokenResult.IsSei      = user.IsSei;
+      tokenResult.IsSicite   = user.IsSicite;
+      tokenResult.PersonId   = user.Id;
+      
+      return tokenResult;
     }
 
     private async Task<Token> GerarJwt(MongoIdentityUser user)

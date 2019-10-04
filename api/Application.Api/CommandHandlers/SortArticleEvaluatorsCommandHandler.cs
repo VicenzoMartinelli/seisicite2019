@@ -55,10 +55,14 @@ namespace Services.Seisicite.Api.CommandHandlers
         {
           foreach (var article in allArticles.Where(x => x.Modality == modality))
           {
-            var ev1 = evaluators.Take(1).FirstOrDefault()?.IncrementArticleCount();
+            var evaluatorsSameInstitution = evaluators.Where(x => x.Institution.Equals(article.PrimaryAuthor.Institution));
+
+            var evSort = evaluators.Except(evaluatorsSameInstitution).Concat(evaluatorsSameInstitution);
+
+            var ev1 = evSort.Take(1).FirstOrDefault()?.IncrementArticleCount();
             article.EvaluatorId = ev1?.Id;
 
-            var ev2 = evaluators.Skip(1).Take(1).FirstOrDefault()?.IncrementArticleCount();
+            var ev2 = evSort.Skip(1).Take(1).FirstOrDefault()?.IncrementArticleCount();
             article.Evaluator2Id = ev2?.Id;
 
             await _repository.SaveOrUpdateAsync(article, article.Id);

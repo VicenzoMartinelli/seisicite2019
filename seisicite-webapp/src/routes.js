@@ -13,6 +13,7 @@ const Login = lazy(() => import("./pages/login/login"));
 const Home = lazy(() => import("./pages/home/index"));
 const Articles = lazy(() => import("./pages/articles"));
 const Evaluators = lazy(() => import("./pages/evaluators"));
+const Report = lazy(() => import("./pages/report"));
 
 const Routes = () => (
   <Router history={history}>
@@ -22,6 +23,7 @@ const Routes = () => (
         <Route exact path="/articles/sei" component={() => <Articles event={1} />} />
         <Route exact path="/articles/sicite" component={() => <Articles event={2} />} />
         <Route exact path="/aprovacao-avaliadores" component={() => <Evaluators />} />
+        <Route exact path="/relatorio" component={() => <Report />} />
         <Route path="/login" component={Login} />
         <Route component={NoMatch} />
       </Switch>

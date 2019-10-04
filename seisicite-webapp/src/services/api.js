@@ -2,7 +2,7 @@ import axios from "axios";
 import * as auth from './auth';
 
 const api = axios.create({
-  baseURL: "https://localhost:44321"
+  baseURL: "http://172.30.4.162:45455"
 });
 
 api.interceptors.request.use(
@@ -62,6 +62,10 @@ export const findEvaluatorsToApprove = async () => {
 
 export const findApprovedEvaluators = async () => {
   return await api.get(`/evaluator/approveds`);
+}
+
+export const findReportArticles = async (event, modality) => {
+  return await api.get(`/articles/articles-report/${event}/${modality}`);
 }
 
 export const approve = async (ids) => {

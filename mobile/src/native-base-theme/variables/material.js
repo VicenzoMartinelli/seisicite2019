@@ -161,12 +161,12 @@ export default {
   footerPaddingBottom: 0,
 
   // FooterTab
-  tabBarTextColor: '#bfc6ea',
+  tabBarTextColor: '#E2E2E2',
   tabBarTextSize: 11,
   activeTab: '#fff',
-  sTabBarActiveTextColor: '#007aff',
-  tabBarActiveTextColor: '#fff',
-  tabActiveBgColor: '#FD8078',
+  sTabBarActiveTextColor: '#ff928b',
+  tabBarActiveTextColor: '#ff928b',
+  tabActiveBgColor: '#fff',
 
   // Header
   toolbarBtnColor: '#fff',
@@ -251,7 +251,7 @@ export default {
 
   // Tab
   tabDefaultBg: '#FD8078',
-  topTabBarTextColor: '#b3c7f9',
+  topTabBarTextColor: '#fff',
   topTabBarActiveTextColor: '#fff',
   topTabBarBorderColor: '#fff',
   topTabBarActiveBorderColor: '#fff',

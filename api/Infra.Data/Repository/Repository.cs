@@ -42,6 +42,11 @@ namespace Infra.Data.Repository
       var lst = await db.GetCollection<T>(typeof(T).Name).FindAsync(filter);
       return lst.ToList();
     }
+
+    public Task<T> GetFirstOrDefaultByFilter<T>(FilterDefinition<T> filter) where T : class
+    {
+      return db.GetCollection<T>(typeof(T).Name).Find(filter).FirstOrDefaultAsync();
+    }
     public async Task<List<T>> GetByFilter<T>(FilterDefinition<T> filter, string collectionName) where T : class
     {
       var lst = await db.GetCollection<T>(collectionName).FindAsync(filter);
@@ -61,7 +66,21 @@ namespace Infra.Data.Repository
       {
         throw e;
       }
+    }
+    public async Task<IList<T>> AddManyAsync<T>(IList<T> source) where T : class
+    {
+      var collection = db.GetCollection<T>(typeof(T).Name);
 
+      try
+      {
+        await collection.InsertManyAsync(source);
+
+        return source;
+      }
+      catch (Exception e)
+      {
+        throw e;
+      }
     }
 
     public async Task<T> UpdateAsync<T>(T source, string id) where T : class

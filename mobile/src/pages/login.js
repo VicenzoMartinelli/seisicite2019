@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { StyleSheet, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Image, Alert } from 'react-native';
 import api from '../services/api';
+import * as auth from '../services/auth';
 import {
   Container,
   Button,
@@ -24,14 +25,36 @@ export default function Login({ navigation }) {
   const [password, setPassword] = useState('');
 
   function handleLogin() {
-    api.post('/auth/login', { email, password })
-      .then((r) => {
-        console.log(r)
+    auth
+      .login(email, password)
+      .then(res => {
+
+        if (res.success !== undefined && !res.success) {
+          Alert.alert('Atenção', res.msg);
+          return;
+        }
+
+        navigation.navigate('HomeRoutes');
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err)
-      })
+        Alert.alert('Atenção', err);
+      });
   }
+
+  useEffect(() => {
+    // async function logout() {
+    //   auth.logout();
+    // }
+    async function doCheck() {
+      let r = await auth.loggedIn();
+      if (r)
+        navigation.navigate('HomeRoutes');
+    }
+
+    doCheck()
+    // logout()
+  }, []);
 
   const styles = StyleSheet.create({
     title: {
@@ -58,11 +81,11 @@ export default function Login({ navigation }) {
           <Form style={{ padding: 10 }}>
             <Item rounded >
               <Icon type="MaterialCommunityIcons" name="email" style={{ color: '#ff928b' }}></Icon>
-              <Input value={email} onChangeText={(e) => setEmail(e)} placeholder='Insira seu email' />
+              <Input value={email} autoCapitalize="none" onChangeText={(e) => setEmail(e)} placeholder='Insira seu email' />
             </Item>
             <Item rounded style={{ marginHorinzontal: 10, marginTop: 5 }}>
               <Icon type="Feather" name="unlock" style={{ color: '#ff928b' }}></Icon>
-              <Input value={password} onChangeText={(e) => setPassword(e)} secureTextEntry={true} placeholder='Insira sua senha' />
+              <Input value={password} autoCapitalize="none" onChangeText={(e) => setPassword(e)} secureTextEntry={true} placeholder='Insira sua senha' />
             </Item>
 
             <Button primary rounded bordered style={{ marginVertical: 10, width: '50%', alignSelf: 'center' }} onPress={handleLogin}>

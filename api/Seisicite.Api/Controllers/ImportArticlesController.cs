@@ -15,34 +15,56 @@ using System.Threading.Tasks;
 
 namespace Services.Seisicite.Api.Controllers
 {
-    [Route("import-articles")]
-    [ApiController]
-    [Authorize]
-    public class ImportArticlesController : BaseApiController
+  [Route("import-articles")]
+  [ApiController]
+  [Authorize]
+  public class ImportArticlesController : BaseApiController
+  {
+    public ImportArticlesController(IMediator mediator, NotificationContext notificationContext) : base(mediator, notificationContext)
+    { }
+
+    [HttpPost("{evvent}")]
+    public async Task<IActionResult> ImportArticles(
+        IFormFile file,
+        EEventIdentifier evvent)
     {
-        public ImportArticlesController(IMediator mediator, NotificationContext notificationContext) : base(mediator, notificationContext)
-        { }
-        
-        [HttpPost("{evvent}")]
-        public async Task<IActionResult> ImportArticles(
+      List<ArticleImport> items;
+
+      using (StreamReader r = new StreamReader(file.OpenReadStream()))
+      {
+        string json = r.ReadToEnd();
+        items = JsonConvert.DeserializeObject<List<ArticleImport>>(json);
+      }
+
+      var res = await _mediator.Send(new ImportArticlesCommand()
+      {
+        Articles = items,
+        Event = evvent
+      });
+
+      return res ? await ResponseOkAsync() : await ResponseNotificationsAsync();
+    }
+
+    [HttpPost("notes/{evvent}")]
+    public async Task<IActionResult> ImportNotes(
             IFormFile file,
             EEventIdentifier evvent)
-        {
-            List<ArticleImport> items;
+    {
+      List<ArticleComissionNote> items;
 
-            using (StreamReader r = new StreamReader(file.OpenReadStream()))
-            {
-                string json = r.ReadToEnd();
-                items = JsonConvert.DeserializeObject<List<ArticleImport>>(json);
-            }
+      using (StreamReader r = new StreamReader(file.OpenReadStream()))
+      {
+        string json = r.ReadToEnd();
+        items = JsonConvert.DeserializeObject<List<ArticleComissionNote>>(json);
+      }
 
-            var res = await _mediator.Send(new ImportArticlesCommand()
-            {
-                Articles = items,
-                Event = evvent
-            });
+      var res = await _mediator.Send(new ImportArticlesComissionNoteCommand()
+      {
+        Notes = items,
+        Event = evvent
+      });
 
-            return res ? await ResponseOkAsync() : await ResponseNotificationsAsync();
-        }
+      return res ? await ResponseOkAsync() : await ResponseNotificationsAsync();
     }
+  }
 }

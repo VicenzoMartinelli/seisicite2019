@@ -7,6 +7,15 @@ C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Data.MongoIdentityStore\obj\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.AssemblyInfo.cs
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Data.MongoIdentityStore\obj\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.dll
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.Data.MongoIdentityStore\obj\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.pdb
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\seisicite-api\Infra.Data.MongoIdentityStore\bin\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.deps.json
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\seisicite-api\Infra.Data.MongoIdentityStore\bin\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.dll
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\seisicite-api\Infra.Data.MongoIdentityStore\bin\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.pdb
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\seisicite-api\Infra.Data.MongoIdentityStore\obj\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.csprojAssemblyReference.cache
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\seisicite-api\Infra.Data.MongoIdentityStore\obj\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.csproj.CoreCompileInputs.cache
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\seisicite-api\Infra.Data.MongoIdentityStore\obj\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.AssemblyInfoInputs.cache
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\seisicite-api\Infra.Data.MongoIdentityStore\obj\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.AssemblyInfo.cs
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\seisicite-api\Infra.Data.MongoIdentityStore\obj\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.dll
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\seisicite-api\Infra.Data.MongoIdentityStore\obj\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.pdb
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.Data.MongoIdentityStore\bin\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.deps.json
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.Data.MongoIdentityStore\bin\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.dll
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.Data.MongoIdentityStore\bin\Debug\netcoreapp2.2\Infra.Data.MongoIdentityStore.pdb

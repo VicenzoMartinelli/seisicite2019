@@ -14,10 +14,12 @@ namespace Infra.Ioc.Configs
     public static void AddCommandsServices(this IServiceCollection services)
     {
       services.AddScoped<IRequestHandler<ImportArticlesCommand, bool>, ImportArticlesCommandHandler>();
+      services.AddScoped<IRequestHandler<ImportArticlesComissionNoteCommand, bool>, ImportArticlesComissionNoteCommandHandler>();
       services.AddScoped<IRequestHandler<UpdateArticleCommand, CommandResult<ArticleViewModel>>, UpdateArticleCommandHandler>();
       services.AddScoped<IRequestHandler<ApproveEvaluatorCommand, bool>, ApproveEvaluatorCommandHandler>();
       services.AddScoped<IRequestHandler<SortArticleEvaluatorsCommand, bool>, SortArticleEvaluatorsCommandHandler>();
       services.AddScoped<IRequestHandler<CancelEvaluatorsCommand, bool>, CancelEvaluatorsCommandHandler>();
+      services.AddScoped<IRequestHandler<EvaluateArticleCommand, bool>, EvaluateArticleCommandHandler>();
     }
   }
 }

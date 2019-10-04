@@ -36,5 +36,8 @@ namespace Domain.Core.Enumerators
 
     [Display(Name = "Seu usuário não foi aprovado pela comissão!")]
     UsuarioNaoAprovado = 2002,
+
+    [Display(Name = "Não é possível editar a avaliação deste artigo, verifique a data e o turno do mesmo.")]
+    NaoEhPossivelEditarAvaliacaoArtigo = 2003,
   }
 }

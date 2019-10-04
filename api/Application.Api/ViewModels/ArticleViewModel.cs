@@ -1,6 +1,5 @@
-using System;
-using System.Collections.Generic;
 using Domains.Article;
+using System;
 
 namespace Application.Api.ViewModels
 {
@@ -19,5 +18,6 @@ namespace Application.Api.ViewModels
     public string LocalDetails { get; set; }
     public string EvaluatorId { get; set; }
     public string Evaluator2Id { get; set; }
+    public bool Editable { get; set; }
   }
 }

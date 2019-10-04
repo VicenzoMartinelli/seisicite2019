@@ -21,5 +21,7 @@ namespace Domain.Interfaces
     Task<bool> DeleteAsync<T>(string id) where T : class;
     IQueryable<T> Query<T>() where T : class;
     IQueryable<T> Query<T>(string collectionName) where T : class;
+    Task<T> GetFirstOrDefaultByFilter<T>(FilterDefinition<T> filter) where T : class;
+    Task<IList<T>> AddManyAsync<T>(IList<T> source) where T : class;
   }
 }

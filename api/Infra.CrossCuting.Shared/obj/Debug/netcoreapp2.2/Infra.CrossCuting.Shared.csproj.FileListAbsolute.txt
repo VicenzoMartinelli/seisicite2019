@@ -7,6 +7,14 @@ C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.CrossCuting.Shared\obj\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.dll
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.CrossCuting.Shared\obj\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.pdb
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\ok\Seisicite\Infra.CrossCuting.Shared\obj\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.csprojAssemblyReference.cache
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\seisicite-api\Infra.CrossCuting.Shared\bin\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.deps.json
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\seisicite-api\Infra.CrossCuting.Shared\bin\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.dll
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\seisicite-api\Infra.CrossCuting.Shared\bin\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.pdb
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\seisicite-api\Infra.CrossCuting.Shared\obj\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.csproj.CoreCompileInputs.cache
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\seisicite-api\Infra.CrossCuting.Shared\obj\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.AssemblyInfoInputs.cache
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\seisicite-api\Infra.CrossCuting.Shared\obj\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.AssemblyInfo.cs
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\seisicite-api\Infra.CrossCuting.Shared\obj\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.dll
+C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\seisicite-api\Infra.CrossCuting.Shared\obj\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.pdb
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.CrossCuting.Shared\bin\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.deps.json
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.CrossCuting.Shared\bin\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.dll
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.CrossCuting.Shared\bin\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.pdb
