@@ -5,13 +5,15 @@ import { Transition } from 'react-native-reanimated';
 
 import Login from './../pages/login'
 import Register from './../pages/register'
-import HomeRoutes from './../pages/app-routes'
+import Home from './../pages/home'
+import EvaluateArticle from './../pages/evaluate-article'
 
 const mainNavigation = createAnimatedSwitchNavigator(
   {
     Login,
     Register,
-    HomeRoutes
+    Home,
+    EvaluateArticle
   },
   {
     transition: (

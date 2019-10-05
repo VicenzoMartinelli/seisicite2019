@@ -34,7 +34,7 @@ export default function Login({ navigation }) {
           return;
         }
 
-        navigation.navigate('HomeRoutes');
+        navigation.navigate('Home');
       })
       .catch(err => {
         console.log(err)
@@ -49,7 +49,7 @@ export default function Login({ navigation }) {
     async function doCheck() {
       let r = await auth.loggedIn();
       if (r)
-        navigation.navigate('HomeRoutes');
+        navigation.navigate('Home');
     }
 
     doCheck()

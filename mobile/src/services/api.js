@@ -29,12 +29,45 @@ export const registerUser = async (user) => {
   }
 };
 
+export const evaluateArticle = async (evaluationData) => {
+  const { personId } = await auth.getUser();
+
+  try {
+    const res = await api.put(`/articles/${evaluationData.id}/evaluate`, { ...evaluationData, evaluatorId: personId });
+
+    return Promise.resolve(res);
+  } catch (error) {
+    console.log(error)
+    return Promise.resolve({
+      success: false,
+      msg: error.response.data.occurrences ? error.response.data.occurrences[0].message : error.response.data
+    });
+  }
+};
+
 export const findModalidades = async () => {
   return await api.get(`articles/modalities`);
 }
 
 export const findInstitutions = async () => {
   return await api.get(`articles/instituions`);
+}
+
+export const findArticlesEvaluate = async (event, type) => {
+  const { personId } = await auth.getUser();
+
+  return await api.get(`articles/articles-evaluate/${event}/${personId}/${type}`);
+}
+
+export const canEvaluateArticle = async (articleId) => {
+  const { personId } = await auth.getUser();
+
+  const params = new URLSearchParams();
+  params.append('evaluatorId', personId);
+
+  return await api.get(`articles/${articleId}/can-evaluate`, {
+    params
+  });
 }
 
 export default api;

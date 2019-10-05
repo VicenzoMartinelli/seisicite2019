@@ -157,9 +157,9 @@ export default function Register({ navigation }) {
   return (
     <Container>
       <Content contentContainerStyle={styles.main}>
-        <Card>
-          <ScrollView>
-            <CustomForm behavior='height'>
+        <Card key="1">
+          <CustomForm behavior='height'>
+            <ScrollView>
               <Text style={styles.title}>Realize seu cadastro</Text>
               <Formik
                 initialValues={initial}
@@ -192,43 +192,7 @@ export default function Register({ navigation }) {
                         <Icon type="Feather" name="unlock" style={styles.colorPrimary}></Icon>
                         <CustomInput style={{ flex: 1 }} name="password" type="password" secureTextEntry={true} placeholderTextColor='#a3a3a3' placeholder='Insira sua senha' />
                       </Item>
-                      {/* 
-                      <Item rounded >
-                        <View style={{ flex: 1 }}>
-                          <SectionedMultiSelect
-                            single
-                            items={dataInstituicoes}
-                            colors={{
-                              primary: '#ff9282',
-                              success: '#ff928b',
-                              cancel: '#a3a3a3',
-                              text: '#a3a3a3',
-                              subText: '#a3a3a3',
-                              selectToggleTextColor: '#a3a3a3',
-                              searchPlaceholderTextColor: '#a3a3a3',
-                              searchSelectionColor: '#a3a3a3',
-                              chipColor: '#a3a3a3',
-                              itemBackground: '#FFF',
-                              subItemBackground: '#FFF'
-                            }}
-                            uniqueKey="name"
-                            searchTextFontFamily={{ fontWeight: 'normal' }}
-                            itemFontFamily={{ fontWeight: 'normal' }}
-                            confirmTextFontFamily={{ fontWeight: 'normal' }}
-                            selectText="Instituição"
-                            selectedText=""
-                            confirmText="Confirmar"
-                            searchText="Selecione"
-                            searchPlaceholderText="Buscar instituição..."
-                            showDropDowns={false}
-                            modalWithSafeAreaView={true}
-                            readOnlyHeadings={false}
-                            onSelectedItemsChange={(x) => setFieldValue('institution', x)}
-                            selectedItems={[values.institution]}
-                          />
-                          {errors.institution && touched.institution && <Text style={styles.labelError}>{errors.institution}</Text>}
-                        </View>
-                      </Item> */}
+
                       <Item rounded picker style={{ marginBottom: 10 }}>
                         <Picker
                           mode="dropdown"
@@ -240,46 +204,9 @@ export default function Register({ navigation }) {
                           selectedValue={values.institution}
                           onValueChange={(e) => setFieldValue('institution', e)}
                         >
-                          {dataInstituicoes.map((e) => (<Picker.Item label={e} value={e} />))}
+                          {dataInstituicoes.map((e) => (<Picker.Item key={e} style={{ fontSize: 8 }} label={e} value={e} />))}
                         </Picker>
                       </Item>
-                      {/* 
-                      <Item rounded >
-                        <View style={{ flex: 1 }}>
-                          <SectionedMultiSelect
-                            single
-                            items={dataInstituicoes}
-                            colors={{
-                              primary: '#ff9282',
-                              success: '#ff928b',
-                              cancel: '#a3a3a3',
-                              text: '#a3a3a3',
-                              subText: '#a3a3a3',
-                              selectToggleTextColor: '#a3a3a3',
-                              searchPlaceholderTextColor: '#a3a3a3',
-                              searchSelectionColor: '#a3a3a3',
-                              chipColor: '#a3a3a3',
-                              itemBackground: '#FFF',
-                              subItemBackground: '#FFF'
-                            }}
-                            uniqueKey="name"
-                            searchTextFontFamily={{ fontWeight: 'normal' }}
-                            itemFontFamily={{ fontWeight: 'normal' }}
-                            confirmTextFontFamily={{ fontWeight: 'normal' }}
-                            selectText="Instituição"
-                            selectedText=""
-                            confirmText="Confirmar"
-                            searchText="Selecione"
-                            searchPlaceholderText="Buscar instituição..."
-                            showDropDowns={false}
-                            modalWithSafeAreaView={true}
-                            readOnlyHeadings={false}
-                            onSelectedItemsChange={(x) => setFieldValue('institution', x)}
-                            selectedItems={[values.institution]}
-                          />
-                          {errors.institution && touched.institution && <Text style={styles.labelError}>{errors.institution}</Text>}
-                        </View>
-                      </Item> */}
 
                       <Item rounded >
                         <View style={{ flex: 1 }}>
@@ -327,8 +254,8 @@ export default function Register({ navigation }) {
                   );
                 }}
               </Formik>
-            </CustomForm>
-          </ScrollView>
+            </ScrollView>
+          </CustomForm>
         </Card>
       </Content>
     </Container >

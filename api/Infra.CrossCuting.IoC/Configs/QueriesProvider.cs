@@ -25,6 +25,8 @@ namespace Infra.Ioc.Configs
 
       services.AddScoped<IRequestHandler<ListArticlesToEvaluateQuery, List<ArticleViewModel>>, ListArticlesToEvaluateQueryHandler>();
       services.AddScoped<IRequestHandler<ReportArticlesNoteQuery, List<ArticleFinalReportViewModel>>, ReportArticlesNoteQueryHandler>();
+
+      services.AddScoped<IRequestHandler<CanEvaluateArticleQuery, bool>, CanEvaluateArticleQueryHandler>();
     }
   }
 }

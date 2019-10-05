@@ -363,7 +363,7 @@ export default function EvaluatorGrid({ toApprove, rows, setRows, addToast, setO
                     </TableCell>
                     <TableCell align="left">{row.email}</TableCell>
                     <TableCell align="left">{row.institution}</TableCell>
-                    <TableCell align="left">{row.attendedModalities.map((x) => (<Badge key={x} color="primary">{x}</Badge>))}</TableCell>
+                    <TableCell align="left">{row.attendedModalities.join(', ')}</TableCell>
                     <TableCell align="left">
                       <Checkbox
                         checked={row.isSei}

@@ -65,8 +65,8 @@ export const getConfirm = () => {
   return confirm;
 }
 
-export const getUser = () => {
-  return JSON.parse(AsyncStorage.getItem("ssc_user"));
+export const getUser = async () => {
+  return JSON.parse(await AsyncStorage.getItem("ssc_user"));
 }
 
 const _checkStatus = response => {
