@@ -2,8 +2,8 @@ import axios from 'axios';
 import * as auth from './auth';
 
 const api = axios.create({
-  // baseURL: 'https://seisicite-api.conveyor.cloud',
-  baseURL: 'http://192.168.0.103:45455'
+  baseURL: 'https://api-seisicite.herokuapp.com',
+  // baseURL: 'http://192.168.0.103:45455'
 });
 
 api.interceptors.request.use(async function (reqConfig) {
@@ -69,5 +69,17 @@ export const canEvaluateArticle = async (articleId) => {
     params
   });
 }
+
+export const resetPassword = async (email) => {
+  try {
+    const res = await api.post(`/auth/reset-password/${email}`);
+
+    return Promise.resolve(true);
+  } catch (error) {
+    return Promise.resolve({
+      success: false
+    });
+  }
+};
 
 export default api;

@@ -9,8 +9,6 @@ export const login = async (email, password) => {
       password
     });
 
-    console.log(res);
-
     await setToken(res.data.accessToken);
     await AsyncStorage.setItem("ssc_user", JSON.stringify(res.data));
 

@@ -118,7 +118,7 @@ export default function ModalArticleEdit({
                     type: "text",
                     value: values.building,
                     onChange: handleChange,
-                    placeholder: 'UTFPR',
+                    placeholder: 'Local da apresentação (Ex: UTFPR)',
                     autoComplete: "off"
                   }}
                 />
@@ -134,7 +134,7 @@ export default function ModalArticleEdit({
                     type: "text",
                     value: values.room,
                     onChange: handleChange,
-                    placeholder: 'UTFPR',
+                    placeholder: 'Sala da apresentação (Ex: 108)',
                     autoComplete: "off"
                   }}
                 />
@@ -148,7 +148,6 @@ export default function ModalArticleEdit({
                     type: "text",
                     value: values.localDetails,
                     onChange: handleChange,
-                    placeholder: 'UTFPR',
                     autoComplete: "off"
                   }}
                 />

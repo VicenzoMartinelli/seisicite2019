@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Alert, Image } from 'react-native';
-import { registerUser } from '../services/api';
+import { StyleSheet, Alert } from 'react-native';
 import {
   Container,
   Button,
@@ -11,18 +10,24 @@ import {
   Icon,
   Toast
 } from 'native-base';
-import { Rating, AirbnbRating } from 'react-native-ratings';
+import { AirbnbRating } from 'react-native-ratings';
 import { Formik } from "formik";
 import { ScrollView } from 'react-native-gesture-handler';
 import { evaluateArticle as saveEvaluation } from '../services/api';
+import Loader from "react-native-modal-loader";
 
 export default function EvaluateArticle({ navigation }) {
-  const article = navigation.getParam('article', {})
+  const [loading, setLoading] = useState(false);
+
+  const article = navigation.getParam('article', {});
 
   function handleSave(values) {
+    setLoading(true);
+
     saveEvaluation(values)
       .then(res => {
-        console.log(res)
+        setLoading(false);
+
         if (res.success !== undefined && !res.success) {
           Alert.alert('Atenção', res.msg);
           return;
@@ -34,6 +39,8 @@ export default function EvaluateArticle({ navigation }) {
         })
       })
       .catch(err => {
+        setLoading(false);
+
         Alert.alert('Ocorreu alguma problema ao submeter sua avaliação', err);
       });
   }
@@ -76,6 +83,8 @@ export default function EvaluateArticle({ navigation }) {
     <Container>
       <Content contentContainerStyle={styles.main}>
         <Card>
+          <Loader color='#ff928b' loading={loading} />
+
           <ScrollView>
             <Text style={styles.title}>Avaliação da apresentação</Text>
             <Formik

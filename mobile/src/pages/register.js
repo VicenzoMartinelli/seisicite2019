@@ -15,7 +15,8 @@ import {
   Icon,
   Picker,
   CheckBox,
-  View
+  View,
+  Label
 } from 'native-base';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import * as yup from 'yup';
@@ -24,17 +25,17 @@ import { compose } from "recompose";
 import {
   handleTextInput,
   withNextInputAutoFocusForm,
-  withNextInputAutoFocusInput,
-  withFormikControl
+  withNextInputAutoFocusInput
 } from "react-native-formik";
-import { SafeAreaView } from 'react-navigation';
 import { ScrollView } from 'react-native-gesture-handler';
 import { findModalidades, findInstitutions } from '../services/api';
+import Loader from "react-native-modal-loader";
 
 
 export default function Register({ navigation }) {
   const [dataModalities, setDataModalities] = useState([])
   const [dataInstituicoes, setDataInstituicoes] = useState([])
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function loadData() {
@@ -97,12 +98,16 @@ export default function Register({ navigation }) {
   });
 
   function handleRegister(values) {
+    setLoading(true);
     registerUser(values)
       .then(res => {
+        setLoading(false);
+
         if (res.success !== undefined && !res.success) {
           Alert.alert('Ocorreu alguma problema com seu cadastro', res.msg);
           return;
         }
+
         Alert.alert(
           'Cadastro efetuado com sucesso',
           'Agora para continuar deverá esperar até que a comissão aprove o seu cadastro',
@@ -112,6 +117,8 @@ export default function Register({ navigation }) {
         );
       })
       .catch(err => {
+        setLoading(false);
+
         Alert.alert('Ocorreu alguma problema com seu cadastro', err);
       });
   }
@@ -158,6 +165,8 @@ export default function Register({ navigation }) {
     <Container>
       <Content contentContainerStyle={styles.main}>
         <Card key="1">
+          <Loader color='#ff928b' loading={loading} />
+
           <CustomForm behavior='height'>
             <ScrollView>
               <Text style={styles.title}>Realize seu cadastro</Text>
@@ -193,6 +202,7 @@ export default function Register({ navigation }) {
                         <CustomInput style={{ flex: 1 }} name="password" type="password" secureTextEntry={true} placeholderTextColor='#a3a3a3' placeholder='Insira sua senha' />
                       </Item>
 
+                      <Label style={{ color: "#a3a3a3", marginLeft: 10 }}>Selecione a instituição</Label>
                       <Item rounded picker style={{ marginBottom: 10 }}>
                         <Picker
                           mode="dropdown"

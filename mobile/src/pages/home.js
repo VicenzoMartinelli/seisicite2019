@@ -4,6 +4,9 @@ import { StyleSheet, Alert, TouchableOpacity } from 'react-native';
 import * as auth from '../services/auth';
 import { FlatList } from 'react-native-gesture-handler';
 import { findArticlesEvaluate, canEvaluateArticle } from '../services/api';
+import Loader from "react-native-modal-loader";
+import 'moment/locale/pt-br'
+import moment from 'moment';
 
 const ListDefault = ({ items, type, navigation }) => {
 
@@ -23,6 +26,7 @@ const ListDefault = ({ items, type, navigation }) => {
           })
       }
     }
+    const date = moment(item.startDate, moment.ISO_8601).locale('pt-br');
 
     return (
       <TouchableOpacity key={item.id} onPress={handleOnClick}>
@@ -60,6 +64,11 @@ const ListDefault = ({ items, type, navigation }) => {
             </Left>
           </CardItem>
           }
+          <CardItem>
+            <Left>
+              <Text note>{date.format('DD') + ' de ' + date.format('MMMM - HH:mm')}</Text>
+            </Left>
+          </CardItem>
         </Card>
       </TouchableOpacity>
     )
@@ -69,7 +78,6 @@ const ListDefault = ({ items, type, navigation }) => {
     <Content>
       <FlatList
         style={{ marginTop: 10 }}
-        onScrollBeginDrag={() => Alert.alert('oi')}
         data={items}
         renderItem={handleRenderItem}
         keyExtractor={item => item.id}
@@ -83,6 +91,7 @@ export default function Home({ navigation }) {
   const [toEvaluate, setToEvaluate] = useState([]);
   const [evualuated, setEvaluated] = useState([]);
   const [closed, setClosed] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   let [useSei, setUseSei] = useState(false);
   let [useSicite, setUseSicite] = useState(false);
@@ -99,8 +108,11 @@ export default function Home({ navigation }) {
 
   useEffect(() => {
     async function doOperations() {
+      setLoading(true);
+
       findArticlesEvaluate(event, 1)
         .then(res => {
+          setLoading(false)
           setToEvaluate(res.data);
         });
 
@@ -114,7 +126,6 @@ export default function Home({ navigation }) {
           setClosed(res.data);
         });
     }
-    console.log('passo aq');
 
     doOperations();
   }, [event])
@@ -140,6 +151,8 @@ export default function Home({ navigation }) {
         </Right>
       </Header>
       <View style={styles.container}>
+        <Loader color='#ff928b' loading={loading} />
+
         <Tabs tabBarPosition={"bottom"} tabBarActiveTextColor='primary'>
           <Tab heading={<TabHeading style={styles.tabHeading}><Icon type="MaterialCommunityIcons" name="numeric-1" /><Text style={styles.tabHeadingText}>Pendentes</Text></TabHeading>}>
             <ListDefault items={toEvaluate} type={1} navigation={navigation} />
