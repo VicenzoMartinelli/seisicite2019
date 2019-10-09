@@ -15,7 +15,7 @@ export const login = async (email, password) => {
     return Promise.resolve(res);
   } catch (error) {
     console.log(error)
-    return Promise.resolve({
+    return Promise.resolve({ 
       success: false,
       msg: error.response.data.occurrences ? error.response.data.occurrences[0].message : error.response.data
     });
