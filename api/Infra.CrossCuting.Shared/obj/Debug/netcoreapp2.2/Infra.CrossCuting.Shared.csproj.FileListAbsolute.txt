@@ -24,3 +24,11 @@ C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.CrossCuting.
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.CrossCuting.Shared\obj\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.AssemblyInfo.cs
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.CrossCuting.Shared\obj\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.dll
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Infra.CrossCuting.Shared\obj\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.pdb
+R:\Code\React\seisicite\api\Infra.CrossCuting.Shared\bin\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.deps.json
+R:\Code\React\seisicite\api\Infra.CrossCuting.Shared\bin\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.dll
+R:\Code\React\seisicite\api\Infra.CrossCuting.Shared\bin\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.pdb
+R:\Code\React\seisicite\api\Infra.CrossCuting.Shared\obj\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.csprojAssemblyReference.cache
+R:\Code\React\seisicite\api\Infra.CrossCuting.Shared\obj\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.AssemblyInfoInputs.cache
+R:\Code\React\seisicite\api\Infra.CrossCuting.Shared\obj\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.AssemblyInfo.cs
+R:\Code\React\seisicite\api\Infra.CrossCuting.Shared\obj\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.dll
+R:\Code\React\seisicite\api\Infra.CrossCuting.Shared\obj\Debug\netcoreapp2.2\Infra.CrossCuting.Shared.pdb

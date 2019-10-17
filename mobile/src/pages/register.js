@@ -182,8 +182,8 @@ export default function Register({ navigation }) {
                     <Form style={{ padding: 10 }}>
                       <Item rounded style={{ marginBottom: 10 }}>
                         <Icon
-                          type="MaterialCommunityIcons"
-                          name="email"
+                          type="MaterialIcons"
+                          name="person"
                           style={styles.colorPrimary}
                         ></Icon>
                         <CustomInput

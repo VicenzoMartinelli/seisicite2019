@@ -1,78 +1,112 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Header, Left, Right, Body, Button, Icon, View, Segment, Text, Content, Tab, Tabs, TabHeading, Card, CardItem } from 'native-base';
-import { StyleSheet, Alert, TouchableOpacity } from 'react-native';
-import * as auth from '../services/auth';
-import { FlatList } from 'react-native-gesture-handler';
-import { findArticlesEvaluate, canEvaluateArticle } from '../services/api';
+import React, { useState, useEffect } from "react";
+import {
+  Container,
+  Header,
+  Left,
+  Right,
+  Body,
+  Button,
+  Icon,
+  View,
+  Segment,
+  Text,
+  Content,
+  Tab,
+  Tabs,
+  TabHeading,
+  Card,
+  CardItem,
+  Toast
+} from "native-base";
+import { StyleSheet, Alert, TouchableOpacity } from "react-native";
+import * as auth from "../services/auth";
+import { FlatList } from "react-native-gesture-handler";
+import { findArticlesEvaluate, canEvaluateArticle } from "../services/api";
 import Loader from "react-native-modal-loader";
-import 'moment/locale/pt-br'
-import moment from 'moment';
+import "moment/locale/pt-br";
+import moment from "moment";
 
-const ListDefault = ({ items, type, navigation }) => {
-
+const ListDefault = ({ items, setLoading, type, navigation }) => {
   const handleRenderItem = ({ item }) => {
-
     const handleOnClick = async () => {
       if (type !== 3) {
+        setLoading(true);
+
         canEvaluateArticle(item.id)
-          .then((err) => {
-            navigation.navigate('EvaluateArticle', {
+          .then(err => {
+            setLoading(false);
+            navigation.navigate("EvaluateArticle", {
               article: item
             });
           })
-          .catch((x) => {
-            Alert.alert('Atenção', 'Não é possível realizar esta avaliação. Verifique, por favor, a data e horário da mesma')
+          .catch(x => {
+            setLoading(false);
+            Alert.alert(
+              "Atenção",
+              "Não é possível realizar esta avaliação. Verifique, por favor, a data e horário da mesma"
+            );
             return;
-          })
+          });
       }
-    }
-    const date = moment(item.startDate, moment.ISO_8601).locale('pt-br');
+    };
+    const date = moment(item.startDate, moment.ISO_8601).locale("pt-br");
 
     return (
       <TouchableOpacity key={item.id} onPress={handleOnClick}>
         <Card pointerEvents="none">
           <CardItem>
             <Left>
-              <Text note style={{ fontWeight: 'bold' }}>Submissão: {item.submissionId}</Text>
+              <Text note style={{ fontWeight: "bold" }}>
+                Submissão: {item.submissionId}
+              </Text>
             </Left>
             <Right>
               <Text note>{item.modality}</Text>
             </Right>
           </CardItem>
           <CardItem>
-            <Left>
-              <Text note>Autor: </Text>
-              <Text note style={{ fontWeight: 'bold' }}>{item.primaryAuthor.fullName}</Text>
-            </Left>
+            <Body>
+              <Text note style={{ marginLeft: 10, fontWeight: "bold" }}>
+                Autor(es): {item.primaryAuthor.fullName}
+                {item.secundaryAuthor &&
+                  item.secundaryAuthor.fullName &&
+                  `, ${item.secundaryAuthor.fullName}`}
+              </Text>
+            </Body>
           </CardItem>
           <CardItem>
             <Body>
               <Text style={{ marginLeft: 10, fontSize: 13 }}>{item.title}</Text>
             </Body>
           </CardItem>
+          {(item.building.length > 0 || item.room.length > 0) && (
+            <CardItem>
+              <Left>
+                <Text note>{item.building}</Text>
+              </Left>
+              <Right>
+                <Text note>{item.room}</Text>
+              </Right>
+            </CardItem>
+          )}
+          {(item.localDetails || "").length > 0 && (
+            <CardItem>
+              <Left>
+                <Text note>{item.localDetails}</Text>
+              </Left>
+            </CardItem>
+          )}
           <CardItem>
             <Left>
-              <Text note>{item.building}</Text>
-            </Left>
-            <Right>
-              <Text note>{item.room}</Text>
-            </Right>
-          </CardItem>
-          {item.localDetails && <CardItem>
-            <Left>
-              <Text note>{item.localDetails}</Text>
-            </Left>
-          </CardItem>
-          }
-          <CardItem>
-            <Left>
-              <Text note>{date.format('DD') + ' de ' + date.format('MMMM - HH:mm')}</Text>
+              <Text note>
+                {date.format("DD") + " de " + date.format("MMMM - HH:mm")}
+              </Text>
             </Left>
           </CardItem>
         </Card>
       </TouchableOpacity>
-    )
-  }
+    );
+  };
 
   return (
     <Content>
@@ -82,9 +116,9 @@ const ListDefault = ({ items, type, navigation }) => {
         renderItem={handleRenderItem}
         keyExtractor={item => item.id}
       />
-    </Content >
+    </Content>
   );
-}
+};
 
 export default function Home({ navigation }) {
   const [event, setEvent] = useState(1);
@@ -103,81 +137,145 @@ export default function Home({ navigation }) {
       setUseSicite(userData.isSicite);
     }
 
-    doOperations()
-  }, [])
+    doOperations();
+  }, []);
 
   useEffect(() => {
     async function doOperations() {
       setLoading(true);
+      let completed = [false, false, false];
 
-      findArticlesEvaluate(event, 1)
-        .then(res => {
-          setLoading(false)
+      function finalizeLoading() {
+        if (completed.every(x => x)) {
+          setLoading(false);
+        }
+      }
+
+      try {
+        findArticlesEvaluate(event, 1).then(res => {
           setToEvaluate(res.data);
+
+          completed[0] = true;
+          finalizeLoading();
         });
 
-      findArticlesEvaluate(event, 2)
-        .then(res => {
+        findArticlesEvaluate(event, 2).then(res => {
           setEvaluated(res.data);
+
+          completed[1] = true;
+          finalizeLoading();
         });
 
-      findArticlesEvaluate(event, 3)
-        .then(res => {
+        findArticlesEvaluate(event, 3).then(res => {
           setClosed(res.data);
+
+          completed[2] = true;
+          finalizeLoading();
         });
+      } catch (error) {
+        setLoading(false);
+        Toast.show({
+          text: "Não foi possível conectar-se com o servidor",
+          buttonText: "Ok",
+          type: "danger"
+        });
+      }
     }
 
     doOperations();
-  }, [event])
+  }, [event]);
 
   function handleLogout() {
-    auth.logout()
-      .then(() => {
-        navigation.navigate('Login')
-      })
+    auth.logout().then(() => {
+      navigation.navigate("Login");
+    });
+  }
+
+  function handleEventChange() {
+    setLoading(true);
+
+    if (event === 1) {
+      setEvent(2);
+    } else {
+      setEvent(1);
+    }
   }
 
   return (
     <Container>
-      <Header androidStatusBarColor="#ff928b" style={styles.header} hasTabs>
+      <Header
+        noLeft={(useSicite && !useSei) || (!useSicite && useSei)}
+        androidStatusBarColor="#ff928b"
+        style={styles.header}
+        hasTabs
+      >
         <Left>
-          <Segment style={{ marginLeft: 50 }}>
-            <Button style={{ width: 80, alignContent: 'center' }} disabled={!useSei} active={event === 1} onPress={() => event === 2 && setEvent(1)}><Text>Sei</Text></Button>
-            <Button style={{ width: 80, alignContent: 'center' }} disabled={!useSicite} active={event === 2} onPress={() => event === 1 && setEvent(2)}><Text>Sicite</Text></Button>
-          </Segment>
+          {useSicite && useSei && (
+            <Button rounded transparent onPress={handleEventChange}>
+              <Icon color="#FFF" type="MaterialIcons" name="compare-arrows" />
+            </Button>
+          )}
         </Left>
+        <Body>
+          <Text style={{ color: "#FFF", fontSize: 16 }}>
+            {event === 1 ? "Evento: Sei" : "Evento: Sicite"}
+          </Text>
+        </Body>
         <Right>
-          <Button rounded transparent onPress={handleLogout}><Icon color='#FFF' type="MaterialIcons" name="exit-to-app" /></Button>
+          <Button rounded transparent onPress={handleLogout}>
+            <Icon color="#FFF" type="MaterialIcons" name="exit-to-app" />
+          </Button>
         </Right>
       </Header>
       <View style={styles.container}>
-        <Loader color='#ff928b' loading={loading} />
+        <Loader color="#ff928b" loading={loading} />
 
-        <Tabs tabBarPosition={"bottom"} tabBarActiveTextColor='primary'>
-          <Tab heading={<TabHeading style={styles.tabHeading}><Icon type="MaterialCommunityIcons" name="numeric-1" /><Text style={styles.tabHeadingText}>Pendentes</Text></TabHeading>}>
-            <ListDefault items={toEvaluate} type={1} navigation={navigation} />
+        <Tabs tabBarPosition={"bottom"} tabBarActiveTextColor="primary">
+          <Tab
+            heading={
+              <TabHeading style={styles.tabHeading}>
+                <Icon type="MaterialCommunityIcons" name="numeric-1" />
+                <Text style={styles.tabHeadingText}>Pendentes</Text>
+              </TabHeading>
+            }
+          >
+            <ListDefault setLoading={setLoading} items={toEvaluate} type={1} navigation={navigation} />
           </Tab>
-          <Tab heading={<TabHeading style={styles.tabHeading}><Icon type="MaterialCommunityIcons" name="numeric-2" /><Text style={styles.tabHeadingText}>Em aberto</Text></TabHeading>}>
-            <ListDefault items={evualuated} type={2} navigation={navigation} />
+          <Tab
+            heading={
+              <TabHeading style={styles.tabHeading}>
+                <Icon type="MaterialCommunityIcons" name="numeric-2" />
+                <Text style={styles.tabHeadingText}>Em aberto</Text>
+              </TabHeading>
+            }
+          >
+            <ListDefault setLoading={setLoading} items={evualuated} type={2} navigation={navigation} />
           </Tab>
-          <Tab heading={<TabHeading style={styles.tabHeading}><Icon type="MaterialCommunityIcons" name="numeric-3" /><Text style={styles.tabHeadingText}>Finalizados</Text></TabHeading>}>
-            <ListDefault items={closed} type={3} navigation={navigation} />
+          <Tab
+            heading={
+              <TabHeading style={styles.tabHeading}>
+                <Icon type="MaterialCommunityIcons" name="numeric-3" />
+                <Text style={styles.tabHeadingText}>Finalizados</Text>
+              </TabHeading>
+            }
+          >
+            <ListDefault setLoading={setLoading} items={closed} type={3} navigation={navigation} />
           </Tab>
         </Tabs>
       </View>
     </Container>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: "#ff928b",
+    backgroundColor: "#ff928b"
   },
   container: {
-    flex: 1,
+    flex: 1
   },
   tabHeading: {
-    flexDirection: 'column'
+    flexDirection: "column"
   },
   tabHeadingText: {
     fontSize: 11

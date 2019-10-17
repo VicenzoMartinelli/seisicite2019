@@ -3,7 +3,7 @@ import * as auth from './auth';
 
 const api = axios.create({
   baseURL: 'https://api-seisicite.herokuapp.com',
-  // baseURL: 'http://192.168.0.103:45455'
+  //baseURL: 'http://192.168.0.103:45455/'
 });
 
 api.interceptors.request.use(async function (reqConfig) {

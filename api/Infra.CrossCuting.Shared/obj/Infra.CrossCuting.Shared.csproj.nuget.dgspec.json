@@ -1,21 +1,18 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.CrossCuting.Shared\\Infra.CrossCuting.Shared.csproj": {}
+    "R:\\Code\\React\\seisicite\\api\\Infra.CrossCuting.Shared\\Infra.CrossCuting.Shared.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.CrossCuting.Shared\\Infra.CrossCuting.Shared.csproj": {
+    "R:\\Code\\React\\seisicite\\api\\Infra.CrossCuting.Shared\\Infra.CrossCuting.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.CrossCuting.Shared\\Infra.CrossCuting.Shared.csproj",
+        "projectUniqueName": "R:\\Code\\React\\seisicite\\api\\Infra.CrossCuting.Shared\\Infra.CrossCuting.Shared.csproj",
         "projectName": "Infra.CrossCuting.Shared",
-        "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.CrossCuting.Shared\\Infra.CrossCuting.Shared.csproj",
+        "projectPath": "R:\\Code\\React\\seisicite\\api\\Infra.CrossCuting.Shared\\Infra.CrossCuting.Shared.csproj",
         "packagesPath": "C:\\Users\\Vicenzo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Infra.CrossCuting.Shared\\obj\\",
+        "outputPath": "R:\\Code\\React\\seisicite\\api\\Infra.CrossCuting.Shared\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\Vicenzo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -53,10 +50,16 @@
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

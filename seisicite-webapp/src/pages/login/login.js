@@ -8,7 +8,7 @@ import { Email, LockOutlined } from "@material-ui/icons";
 import Footer from "../../components/Footer/Footer.jsx";
 import GridContainer from "../../components/Grid/GridContainer.jsx";
 import GridItem from "../../components/Grid/GridItem.jsx";
-import Button from "../../components/CustomButtons/Button.jsx";
+import Button from "@material-ui/core/Button";
 import Card from "../../components/Card/Card.jsx";
 import CardBody from "../../components/Card/CardBody.jsx";
 import CardHeader from "../../components/Card/CardHeader.jsx";
@@ -142,7 +142,7 @@ const LoginPage = (props) => {
                           />
                         </CardBody>
                         <CardFooter className={classes.cardFooter}>
-                          <Button type='submit' simple color="primary" size="lg">
+                          <Button type='submit' variant="outlined" color="primary" size="large">
                             Entrar
                           </Button>
                         </CardFooter>

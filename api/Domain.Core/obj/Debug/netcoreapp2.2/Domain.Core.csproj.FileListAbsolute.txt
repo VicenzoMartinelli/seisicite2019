@@ -28,3 +28,11 @@ C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Domain.Core\obj\De
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Domain.Core\obj\Debug\netcoreapp2.2\Domain.Core.AssemblyInfo.cs
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Domain.Core\obj\Debug\netcoreapp2.2\Domain.Core.dll
 C:\Users\Vicenzo\OneDrive\Documentos\Code\React\seisicite\api\Domain.Core\obj\Debug\netcoreapp2.2\Domain.Core.pdb
+R:\Code\React\seisicite\api\Domain.Core\bin\Debug\netcoreapp2.2\Domain.Core.deps.json
+R:\Code\React\seisicite\api\Domain.Core\bin\Debug\netcoreapp2.2\Domain.Core.dll
+R:\Code\React\seisicite\api\Domain.Core\bin\Debug\netcoreapp2.2\Domain.Core.pdb
+R:\Code\React\seisicite\api\Domain.Core\obj\Debug\netcoreapp2.2\Domain.Core.csprojAssemblyReference.cache
+R:\Code\React\seisicite\api\Domain.Core\obj\Debug\netcoreapp2.2\Domain.Core.AssemblyInfoInputs.cache
+R:\Code\React\seisicite\api\Domain.Core\obj\Debug\netcoreapp2.2\Domain.Core.AssemblyInfo.cs
+R:\Code\React\seisicite\api\Domain.Core\obj\Debug\netcoreapp2.2\Domain.Core.dll
+R:\Code\React\seisicite\api\Domain.Core\obj\Debug\netcoreapp2.2\Domain.Core.pdb

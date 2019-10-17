@@ -1,104 +1,110 @@
-import React, { useState, useEffect, Suspense } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { green } from '@material-ui/core/colors'
-import { CssBaseline, Container, Paper, Divider } from '@material-ui/core';
-import clsx from 'clsx';
-import withAuth from '../../components/withAuth';
-import { primaryColor } from '../../styles/kit';
-import Header from '../../components/Header';
-import { findArticles, findAvaliadores, findModalidades, saveArticle, sortArticles } from '../../services/api';
-import { useToasts } from 'react-toast-notifications';
-import ListContent from './ListContent';
-import ModalArticleEdit from './ModalArticleEdit';
-import ListHeader from './ListHeader';
-import ModalSortConfirm from './ModalSortConfirm';
+import React, { useState, useEffect, Suspense } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { green } from "@material-ui/core/colors";
+import { CssBaseline, Container, Paper, Divider } from "@material-ui/core";
+import clsx from "clsx";
+import withAuth from "../../components/withAuth";
+import { primaryColor } from "../../styles/kit";
+import Header from "../../components/Header";
+import {
+  findArticles,
+  findAvaliadores,
+  findModalidades,
+  saveArticle,
+  sortArticles
+} from "../../services/api";
+import { useToasts } from "react-toast-notifications";
+import ListContent from "./ListContent";
+import ModalArticleEdit from "./ModalArticleEdit";
+import ListHeader from "./ListHeader";
+import ModalSortConfirm from "./ModalSortConfirm";
 import Loading from "../../components/Loading";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
+    display: "flex"
   },
   drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: '0 8px',
+    display: "flex",
+    alignItems: "center",
+    padding: "0 8px",
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end"
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+      duration: theme.transitions.duration.leavingScreen
     }),
-    marginLeft: -240,
+    marginLeft: -240
   },
   contentShift: {
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
+      duration: theme.transitions.duration.enteringScreen
     }),
-    marginLeft: 0,
+    marginLeft: 0
   },
   colorPrimary: {
     color: primaryColor
   },
   main: {
-    marginTop: '10vh'
+    marginTop: "10vh"
   },
   marginTopTitle: {
-    marginTop: '5%'
+    marginTop: "5%"
   },
   titleArticles: {
-    padding: '15px 5px',
+    padding: "15px 5px",
     color: primaryColor
   },
   containerCards: {
-    marginTop: '1rem'
+    marginTop: "1rem"
   },
   appBar: {
-    position: 'relative',
-    background: 'primary',
-    color: 'white'
+    position: "relative",
+    background: "primary",
+    color: "white"
   },
   closeButton: {
-    color: 'white'
+    color: "white"
   },
   title: {
     marginLeft: theme.spacing(2),
-    flex: 1,
+    flex: 1
   },
   label: {
     color: "#AAAAAA !important",
     fontSize: "14px"
   },
   formControlMargin: {
-    marginTop: '10px'
+    marginTop: "10px"
   },
   typeGroup: {
-    flexDirection: 'row',
+    flexDirection: "row",
     "&:first-child": {
-      marginLeft: '0'
+      marginLeft: "0"
     }
   },
   fab: {
-    position: 'absolute',
+    position: "absolute",
     bottom: theme.spacing(2),
     right: theme.spacing(2),
     backgroundColor: green[500],
-    '&:hover': {
-      backgroundColor: green[600],
-    },
+    "&:hover": {
+      backgroundColor: green[600]
+    }
   },
   boxTitle: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between'
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
   divBtnSort: {
-    display: 'flex',
-    alignItems: 'center'
+    display: "flex",
+    alignItems: "center"
   },
   btnSort: {
     margin: theme.spacing(1)
@@ -107,12 +113,12 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1)
   },
   footerForm: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-end'
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end"
   },
   animationSpin: {
-    animation: 'spin 1s infinite linear'
+    animation: "spin 1s infinite linear"
   }
 }));
 
@@ -131,8 +137,9 @@ function Articles({ event }) {
 
   function handleClickOpen(article) {
     setEditOpened(true);
-    article.evaluatorId = article.evaluatorId === null ? '' : article.evaluatorId;
-    article.evaluator2Id = article.evaluator2Id === null ? '' : article.evaluator2Id;
+    article.evaluatorId = article.evaluatorId || "";
+    article.evaluator2Id = article.evaluator2Id || "";
+    article.localDetails = article.localDetails || "";
     article.startDate = new Date(article.startDate);
     article.type = article.type + "";
 
@@ -147,17 +154,20 @@ function Articles({ event }) {
     sortArticles(event)
       .then(res => {
         if (res.success !== undefined && !res.success) {
-          addToast(res.msg, { appearance: 'error', autoDismiss: true });
+          addToast(res.msg, { appearance: "error", autoDismiss: true });
           setOpering(false);
           return;
         }
         setData(res.data.items);
         setSortOpened(false);
         setOpering(false);
-        addToast("Operação realizada com sucesso!", { appearance: 'success', autoDismiss: true });
+        addToast("Operação realizada com sucesso!", {
+          appearance: "success",
+          autoDismiss: true
+        });
       })
       .catch(err => {
-        addToast(err, { appearance: 'error', autoDismiss: true });
+        addToast(err, { appearance: "error", autoDismiss: true });
         setOpering(false);
       });
   }
@@ -171,38 +181,41 @@ function Articles({ event }) {
     saveArticle(values)
       .then(res => {
         if (res.success !== undefined && !res.success) {
-          addToast(res.msg, { appearance: 'error', autoDismiss: true });
+          addToast(res.msg, { appearance: "error", autoDismiss: true });
           setOpering(false);
           return;
         }
+        debugger;
         setSubmissaoAtual(res.data.result);
 
         let newData = data.copyWithin();
-        let index = newData.findIndex((x) => x.Id === res.data.result.Id);
+        let index = newData.findIndex(x => x.id === res.data.result.id);
 
         if (index !== -1) {
           newData[index] = res.data.result;
         }
         setOpering(false);
         setData(newData);
-        addToast("Registro salvo com sucesso!", { appearance: 'success', autoDismiss: true });
+        addToast("Registro salvo com sucesso!", {
+          appearance: "success",
+          autoDismiss: true
+        });
       })
       .catch(err => {
-        console.log(err)
+        console.log(err);
         setOpering(false);
-        addToast(err, { appearance: 'error', autoDismiss: true });
+        addToast(err, { appearance: "error", autoDismiss: true });
       });
-  };
+  }
 
   useEffect(() => {
     async function loadData() {
       setOpering(true);
 
-      findArticles(event, 0)
-        .then(res => {
-          setData(res.data.items);
-          setOpering(false);
-        });
+      findArticles(event, 0).then(res => {
+        setData(res.data.items);
+        setOpering(false);
+      });
     }
 
     loadData();
@@ -210,10 +223,9 @@ function Articles({ event }) {
 
   useEffect(() => {
     async function loadDataAvaliadores() {
-      findAvaliadores(1)
-        .then(res => {
-          setDataAvaliadores(res.data);
-        });
+      findAvaliadores(1).then(res => {
+        setDataAvaliadores(res.data);
+      });
     }
 
     loadDataAvaliadores();
@@ -221,10 +233,9 @@ function Articles({ event }) {
 
   useEffect(() => {
     async function loadDataModalidades() {
-      findModalidades()
-        .then(res => {
-          setDataModalidades(res.data);
-        });
+      findModalidades().then(res => {
+        setDataModalidades(res.data);
+      });
     }
 
     loadDataModalidades();
@@ -244,8 +255,14 @@ function Articles({ event }) {
             <Paper>
               <ListHeader classes={classes} handleSortClick={handleSortClick} />
               <Divider />
-              {opering && <Loading w={'100%'} h='75vh' bgColor={'#FFF'} />}
-              {!opering && <ListContent classes={classes} data={data} handleClickOpen={handleClickOpen} />}
+              {opering && <Loading w={"100%"} h="75vh" bgColor={"#FFF"} />}
+              {!opering && (
+                <ListContent
+                  classes={classes}
+                  data={data}
+                  handleClickOpen={handleClickOpen}
+                />
+              )}
             </Paper>
           </Container>
 
@@ -266,7 +283,7 @@ function Articles({ event }) {
           />
         </Suspense>
       </main>
-    </div >
+    </div>
   );
 }
 

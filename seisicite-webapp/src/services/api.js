@@ -2,7 +2,8 @@ import axios from "axios";
 import * as auth from './auth';
 
 const api = axios.create({
-  baseURL: 'http://192.168.0.103:45455'
+  baseURL: 'https://api-seisicite.herokuapp.com/',
+  //baseURL: 'http://192.168.0.103:45455/'
 });
 
 api.interceptors.request.use(
@@ -64,8 +65,16 @@ export const findApprovedEvaluators = async () => {
   return await api.get(`/evaluator/approveds`);
 }
 
-export const findReportArticles = async (event, modality) => {
-  return await api.get(`/articles/articles-report/${event}/${modality}`);
+export const findReportArticles = async (event, modality, apresentationType) => {
+  const params = new URLSearchParams();
+  if(apresentationType)
+  {
+    params.append('apresentationType', apresentationType);
+  }
+  console.log(apresentationType)
+  return await api.get(`/articles/articles-report/${event}/${modality}`, {
+    params: params
+  });
 }
 
 export const approve = async (ids) => {

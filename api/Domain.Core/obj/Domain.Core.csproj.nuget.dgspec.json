@@ -1,21 +1,18 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Domain.Core\\Domain.Core.csproj": {}
+    "R:\\Code\\React\\seisicite\\api\\Domain.Core\\Domain.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Domain.Core\\Domain.Core.csproj": {
+    "R:\\Code\\React\\seisicite\\api\\Domain.Core\\Domain.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Domain.Core\\Domain.Core.csproj",
+        "projectUniqueName": "R:\\Code\\React\\seisicite\\api\\Domain.Core\\Domain.Core.csproj",
         "projectName": "Domain.Core",
-        "projectPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Domain.Core\\Domain.Core.csproj",
+        "projectPath": "R:\\Code\\React\\seisicite\\api\\Domain.Core\\Domain.Core.csproj",
         "packagesPath": "C:\\Users\\Vicenzo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vicenzo\\OneDrive\\Documentos\\Code\\React\\seisicite\\api\\Domain.Core\\obj\\",
+        "outputPath": "R:\\Code\\React\\seisicite\\api\\Domain.Core\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\Vicenzo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -57,10 +54,16 @@
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
