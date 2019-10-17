@@ -1,12 +1,12 @@
+using Application.Api.Commands;
+using Domain.Interfaces;
+using Domains.Article;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Api.Commands;
-using Domain.Interfaces;
-using Domains.Article;
-using MediatR;
 
 namespace Application.Api.CommandHandlers
 {
@@ -47,7 +47,7 @@ namespace Application.Api.CommandHandlers
             MiddleName = item.NomeDoMeioAutor1,
             LastName = item.SobrenomeAutor1,
             Email = item.EMailAutor1,
-            Institution = CleanInstitution(item.InstituiçãoAutor1),
+            Institution = string.IsNullOrEmpty(item.InstituiçãoAutor1) ? "UTFPR" : CleanInstitution(item.InstituiçãoAutor1),
             PageUrl = item.UrlAutor1
           },
           SecundaryAuthor = string.IsNullOrEmpty(item.SobrenomeAutor2) ? null : new Author
@@ -58,7 +58,7 @@ namespace Application.Api.CommandHandlers
             MiddleName = item.NomeDoMeioAutor2,
             LastName = item.SobrenomeAutor2,
             Email = item.EMailAutor2,
-            Institution = CleanInstitution(item.InstituiçãoAutor2),
+            Institution = string.IsNullOrEmpty(item.InstituiçãoAutor2) ? "UTFPR" : CleanInstitution(item.InstituiçãoAutor2),
             PageUrl = item.UrlAutor2
           },
           TertiaryAuthor = string.IsNullOrEmpty(item.SobrenomeAutor3) ? null : new Author
@@ -69,7 +69,7 @@ namespace Application.Api.CommandHandlers
             MiddleName = item.NomeDoMeioAutor3,
             LastName = item.SobrenomeAutor3,
             Email = item.EMailAutor3,
-            Institution = CleanInstitution(item.InstituiçãoAutor3),
+            Institution = string.IsNullOrEmpty(item.InstituiçãoAutor3) ? "UTFPR" : CleanInstitution(item.InstituiçãoAutor3),
             PageUrl = item.UrlAutor3
           }
         });
@@ -85,10 +85,14 @@ namespace Application.Api.CommandHandlers
 
     private static string CleanInstitution(string v)
     {
-      return v
+      var r = v
         .Replace("Universidade Tecnológica Federal do Paraná - campus Dois Vizinhos", "Universidade Tecnológica Federal do Paraná, Dois Vizinhos, Paraná, Brasil")
         .Replace("Universidade Tecnológica Federal do Paraná, campus Dois Vizinhos", "Universidade Tecnológica Federal do Paraná, Dois Vizinhos, Paraná, Brasil")
+        .Replace("<p> <p>Universidade Tecnológica Federal do Paraná, Dois Vizinhos, Paraná, Brasil", "Universidade Tecnológica Federal do Paraná, Dois Vizinhos, Paraná, Brasil")
+        .Replace("Universidade Tecnológica Federal do Paraná, campus Campo Mourão", "Universidade Tecnológica Federal do Paraná, Campo Mourão, Paraná, Brasil")
         .Replace("<p class=\"autor\">", "").Replace("</p>", "").Replace("<br />", "").Replace(".", "").Replace("<html />", "").Trim();
+
+      return r.Replace("Universidade Tecnológica Federal do Paraná", "UTFPR");
     }
   }
 }

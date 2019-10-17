@@ -79,7 +79,7 @@ const ListDefault = ({ items, setLoading, type, navigation }) => {
               <Text style={{ marginLeft: 10, fontSize: 13 }}>{item.title}</Text>
             </Body>
           </CardItem>
-          {(item.building.length > 0 || item.room.length > 0) && (
+          {(item.building.length > 0 || item.room.length > 0) ? (
             <CardItem>
               <Left>
                 <Text note>{item.building}</Text>
@@ -88,14 +88,14 @@ const ListDefault = ({ items, setLoading, type, navigation }) => {
                 <Text note>{item.room}</Text>
               </Right>
             </CardItem>
-          )}
-          {(item.localDetails || "").length > 0 && (
+          ) : null}
+          {(item.localDetails || "").length > 0 ? (
             <CardItem>
               <Left>
                 <Text note>{item.localDetails}</Text>
               </Left>
             </CardItem>
-          )}
+          ): null}
           <CardItem>
             <Left>
               <Text note>
