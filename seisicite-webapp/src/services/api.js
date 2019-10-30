@@ -90,6 +90,22 @@ export const approve = async (ids) => {
   }
 };
 
+export const changeEvent = async (id, evento) => {
+  try {
+    const res = await api.put(`/evaluator/update-event`, {
+      userId: id,
+      event: evento
+    });
+
+    return Promise.resolve(res);
+  } catch (error) {
+    return Promise.resolve({
+      success: false,
+      msg: error.response.data.occurrences ? error.response.data.occurrences[0].message : error.response.data
+    });
+  }
+};
+
 export const cancelEvaluators = async (ids) => {
   try {
     const res = await api.put(`/evaluator/cancel`, ids);

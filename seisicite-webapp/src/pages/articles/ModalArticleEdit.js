@@ -4,7 +4,8 @@ import locale from "date-fns/locale/pt-BR";
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
-  KeyboardDatePicker
+  KeyboardDatePicker,
+  DatePicker
 } from "@material-ui/pickers";
 import * as yup from "yup";
 import { Formik } from "formik";
@@ -295,7 +296,7 @@ export default function ModalArticleEdit({
                 >
                   <MuiPickersUtilsProvider utils={DateFnsUtils} locale={locale}>
                     <Grid container justify="space-around">
-                      <KeyboardDatePicker
+                      <DatePicker
                         margin="normal"
                         id="dateArticle"
                         label="Data da apresentação"

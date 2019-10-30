@@ -151,6 +151,8 @@ function Evaluators() {
                 <TabPanel value={tab} index={1}>
                   <EvaluatorGrid
                     handleRefresh={handleRefresh}
+                    addToast={addToast}
+                    setOpering={setOpering}
                     toApprove={false}
                     rows={rows} />
                 </TabPanel>
