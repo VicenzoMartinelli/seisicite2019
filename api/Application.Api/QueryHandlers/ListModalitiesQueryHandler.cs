@@ -1,9 +1,6 @@
-using Application.Api.Queries;
-using Application.Api.ViewModels;
-using Domain.Domains.Article;
+﻿using Application.Api.Queries;
 using Domain.Interfaces;
 using Domains.Article;
-using Infra.Data.MongoIdentityStore;
 using MediatR;
 using MongoDB.Driver;
 using System.Collections.Generic;
@@ -27,7 +24,7 @@ namespace Application.Api.QueryHandlers
         .Select(x => x.Modality)
         .Distinct();
 
-      return Task.FromResult(modalities.ToList());
+      return Task.FromResult(modalities.ToList().OrderBy(x => x).ToList());
     }
   }
 }

@@ -14,10 +14,10 @@ import {
   Card,
   Icon,
   Picker,
-  CheckBox,
   View,
   Label
 } from "native-base";
+import CheckBox from "react-native-check-box";
 import SectionedMultiSelect from "react-native-sectioned-multi-select";
 import * as yup from "yup";
 import { Formik } from "formik";
@@ -223,9 +223,13 @@ export default function Register({ navigation }) {
                           Avaliar Sei
                         </Text>
                         <CheckBox
-                          color="#ff928b"
-                          onPress={e => setFieldValue("isSei", !values.isSei)}
-                          checked={values.isSei}
+                          checkedCheckBoxColor="#ff9282"
+                          uncheckedCheckBoxColor="#ff9282"
+                          style={{ flex: 1, padding: 10 }}
+                          onClick={() => {
+                            setFieldValue("isSei", !values.isSei);
+                          }}
+                          isChecked={values.isSei}
                         />
                       </Item>
 
@@ -242,17 +246,19 @@ export default function Register({ navigation }) {
                           style={{ marginRight: 20 }}
                           note
                           onPress={e =>
-                            setFieldValue("isSicite", !values.isSicite)
+                            setFieldValue("isSicite", !values.isSei)
                           }
                         >
                           Avaliar Sicite
                         </Text>
                         <CheckBox
-                          color="#ff928b"
-                          onPress={e =>
-                            setFieldValue("isSicite", !values.isSicite)
-                          }
-                          checked={values.isSicite}
+                          checkedCheckBoxColor="#ff9282"
+                          uncheckedCheckBoxColor="#ff9282"
+                          style={{ flex: 1, padding: 10 }}
+                          onClick={() => {
+                            setFieldValue("isSicite", !values.isSicite);
+                          }}
+                          isChecked={values.isSicite}
                         />
                       </Item>
 

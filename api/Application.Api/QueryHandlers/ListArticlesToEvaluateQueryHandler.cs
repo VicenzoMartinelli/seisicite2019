@@ -99,13 +99,13 @@ namespace Application.Api.QueryHandlers
 
     private int GetTurno(DateTime time)
     {
-      if (time.Hour > 8)
+      if (time.Hour > 11)
       {
-        if (time.Hour < 13)
+        if (time.Hour < 16)
         {
           return 0;
         }
-        else if (time.Hour < 18)
+        else if (time.Hour < 22)
         {
           return 1;
         }
